@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Willona’s Decor & Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+    }
+
+    .section1 {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background-color: #ffcba4;
+      color: #996515;
+      padding: 10px 0;
+    }
+
+    .logo {
+      width: 120px;
+      max-width: 80%;
+    }
+
+    .slogan {
+      margin: 5px 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .nav-buttons {
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid rgba(255, 215, 0, 0.6);
+      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255, 215, 0, 0.2);
+      color: white;
+      box-shadow: 0 6px 12px rgba(255, 215, 0, 0.6);
+    }
+
+    h1 {
+      padding: 15px;
+      font-size: 1.8rem;
+      background: goldenrod;
+      color: #111;
+      margin: 0 0 10px 0;
+    }
+
+    h2 {
+      color: goldenrod;
+      margin-top: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .gallery img, 
+    .gallery video {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery audio {
+      width: 100%;
+      height: 50px;
+      border-radius: 10px;
+      background-color: #222;
+      margin-top: 5px;
+    }
+
+    .gallery img:hover,
+    .gallery video:hover {
+      transform: scale(1.05);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 85%;
+    }
+
+    .lightbox-content img,
+    .lightbox-content video {
+      width: 100%;
+      height: auto;
+      max-height: 85vh;
+      border-radius: 12px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      background-color: #996515;
+      color: #ffcba4;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .slogan { font-size: 1rem; }
+      .nav-btn { padding: 6px 12px; font-size: 0.9rem; margin: 4px; }
+      .gallery img, .gallery video { height: 140px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-btn { padding: 6px 10px; font-size: 0.85rem; min-width: 80px; }
+      .gallery img, .gallery video { height: 120px; }
+      .slogan { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section1">
+    <img src="willona.png" alt="Willona Logo" class="logo">
+    <div class="slogan">We don’t just decorate spaces—we design moments that take your breath away.</div>
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+    </div>
+  </div>
+
+  <h1>Our Gallery</h1>
+
+  <div style="margin: 20px;">
+    <label for="monthFilter" style="font-weight: bold; color: goldenrod;">Filter by Month:</label>
+    <select id="monthFilter" onchange="filterGallery()" style="padding: 8px; border-radius: 5px;">
+      <option value="all">All</option>
+      <option value="june">June</option>
+      <option value="july">July</option>
+      <option value="august">August</option>
+    </select>
+  </div>
+
+  <!-- June -->
+  <h2>June</h2>
+  <div class="gallery month-group june">
+    <img src="imgj1.jpg" alt="">
+    <img src="imgj2.jpg" alt="">
+    <img src="imgj3.jpg" alt="">
+    <img src="imgj4.jpg" alt="">
+    <img src="imgj5.jpg" alt="">
+    <img src="imgj6.jpg" alt="">
+    <img src="imgj7.jpg" alt="">
+    <img src="imgj8.jpg" alt="">
+    <img src="imgj9.jpg" alt="">
+    <img src="imgj10.jpg" alt="">
+    <img src="imgj11.jpg" alt="">
+    <img src="imgj12.jpg" alt="">
+    <img src="imgj13.jpg" alt="">
+    <video src="vidj1.mp4" muted></video>
+    <video src="vidj2.mp4" muted></video>
+    <video src="vidj3.mp4" muted></video>
+    <video src="vidj4.mp4" muted></video>
+    <video src="vidj5.mp4" muted></video>
+    <video src="vidj6.mp4" muted></video>
+    <video src="vidj1.mp4" controls muted></video>
+    <video src="vidj2.mp4" controls muted></video>
+    <video src="vidj3.mp4" controls muted></video>
+    <video src="vidj4.mp4" controls muted></video>
+    <video src="vidj5.mp4" controls muted></video>
+    <video src="vidj6.mp4" controls muted></video>
+  </div>
+
+  <!-- July -->
+  <h2>July</h2>
+  <div class="gallery month-group july">
+    <img src="imgjl1.jpg" alt="">
+    <img src="imgjl2.jpg" alt="">
+    <img src="imgjl3.jpg" alt="">
+    <img src="imgjl4.jpg" alt="">
+    <img src="imgjl5.jpg" alt="">
+    <img src="imgjl6.jpg" alt="">
+    <img src="imgjl7.jpg" alt="">
+    <img src="imgjl8.jpg" alt="">
+    <img src="imgjl9.jpg" alt="">
+    <img src="imgjl10.jpg" alt="">
+    <img src="imgjl11.jpg" alt="">
+    <img src="imgjl12.jpg" alt="">
+    <video src="vidjl1.mp4" muted></video>
+    <video src="vidjl2.mp4" muted></video>
+    <video src="vidjl3.mp4" muted></video>
+    <video src="vidjl4.mp4" muted></vide
+    <video src="vidj1.mp4" controls muted></video>
+    <video src="vidj2.mp4" controls muted></video>
+    <video src="vidj3.mp4" controls muted></video>
+    <video src="vidj4.mp4" controls muted></video>
+  </div>
+
+  <!-- August -->
+  <h2>August</h2>
+  <div class="gallery month-group august">
+    <img src="imgau1.jpg" alt="">
+    <img src="imgau2.jpg" alt="">
+    <img src="imgau3.jpg" alt="">
+    <img src="imgau4.jpg" alt="">
+    <img src="imgau5.jpg" alt="">
+    <img src="imgau6.jpg" alt="">
+    <img src="imgau7.jpg" alt="">
+    <img src="imgau8.jpg" alt="">
+    <img src="imgau9.jpg" alt="">
+    <img src="imgau10.jpg" alt="">
+    <img src="imgau11.jpg" alt="">
+    <img src="imgau12.jpg" alt="">
+    <img src="imgau13.jpg" alt="">
+    <img src="imgau14.jpg" alt="">
+    <img src="imgau15.jpg" alt="">
+    <img src="imgau16.jpg" alt="">
+    <img src="imgau17.jpg" alt="">
+    <img src="imgau18.jpg" alt="">
+    <video src="vidau1.mp4" muted></video>
+    <video src="vidau2.mp4" muted></video>
+    <video src="vidau3.mp4" muted></video>
+    <video src="vidau4.mp4" muted></video>
+    <video src="vidau5.mp4" muted></video>
+    <video src="vidau6.mp4" muted></video>
+    <video src="vidau7.mp4" muted></video>
+    <video src="vidau8.mp4" muted></video>
+    <video src="vidj1.mp4" controls muted></video>
+    <video src="vidj2.mp4" controls muted></video>
+    <video src="vidj3.mp4" controls muted></video>
+    <video src="vidj4.mp4" controls muted></video>
+    <video src="vidj5.mp4" controls muted></video>
+    <video src="vidj6.mp4" controls muted></video>
+    <video src="vidj7.mp4" controls muted></video>
+    <video src="vidj8.mp4" controls muted></video>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Willona’s™ — We don’t just decorate spaces—we design moments that take your breath away.</p>
+  </footer>
+
+  <script>
+    const galleryItems = document.querySelectorAll('.gallery img, .gallery video');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        if (item.tagName === 'IMG') {
+          lightboxContent.innerHTML = `<img src="${item.src}" alt="">`;
+        } else if (item.tagName === 'VIDEO') {
+          lightboxContent.innerHTML = `<video src="${item.src}" controls autoplay></video>`;
+        }
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      lightboxContent.innerHTML = '';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Willona’s Decor & Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: #fff;
+    }
+
+    .section1 {
+      text-align: center;
+      padding: 10px 20px;
+      background-color: #ffcba4;
+      color: #996515;
+    }
+
+    .logo {
+      width: 120px;
+      max-width: 80%;
+    }
+
+    .slogan {
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    .nav-buttons {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid rgba(255, 215, 0, 0.6);
+      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255, 215, 0, 0.2);
+      color: white;
+      box-shadow: 0 6px 12px rgba(255, 215, 0, 0.6);
+    }
+
+    .section2 {
+      padding: 80px 20px;
+      text-align: center;
+      background: url('img.jpeg') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      color: white;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 15px;
+      overflow-x: auto;
+      color: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: white;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ffd700;
+      text-align: center;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #996515;
+      color: #ffcba4;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .slogan {
+        font-size: 1rem;
+      }
+
+      .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin: 4px;
+      }
+
+      .section2 {
+        padding: 60px 10px;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Section 1 -->
+  <div class="section1">
+    <img src="willona.png" alt="Willona Logo" class="logo" />
+    <h1 class="slogan">
+      <b><i>We don’t just decorate spaces—we design moments that take your breath away.</i></b>
+    </h1>
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+    </div>
+  </div>
+
+  <!-- Section 2: Services -->
+  <div class="section2">
+    <div class="section-content">
+      <h2>Our Services</h2>
+      <table>
+        <tr>
+          <th>Event Type</th>
+          <th>Basic Package</th>
+          <th>Standard Package</th>
+          <th>Premium Package</th>
+        </tr>
+        <tr>
+          <td>Weddings</td>
+          <td>R5,000–R10,000</td>
+          <td>R10,000–R15,000</td>
+          <td>R50,000-R100,000</td>
+        </tr>
+        <tr>
+          <td>Lobola</td>
+          <td>R5,000–R10,000</td>
+          <td>R10,000–R15,000</td>
+          <td>R15,000-R20,000</td>
+        </tr>
+        <tr>
+          <td>Bitdays</td>
+          <td>R2,000–R5,000</td>
+          <td>R5,000–R10,000</td>
+          <td>R10,000-R20,000</td>
+        </tr>
+        <tr>
+          <td>Funerals</td>
+          <td>R5,000–R9,000</td>
+          <td>R9,000–R13,000</td>
+          <td>R13,000-R20,000</td>
+        </tr>
+      </table>
+    </div>
+    <p>Prices vary according to what client wants</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      © 2025 Willona’s™ — <i>We don’t just decorate spaces—we design moments that take your breath away.</i>
+    </p>
+  </footer>
+</body>
+</html>

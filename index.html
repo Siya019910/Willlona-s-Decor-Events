@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Willona’s Decor & Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section1 {
+      background-color: #FFCBA4;
+      color: #996515;
+      text-align: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      width: 80px;
+      max-width: 100%;
+    }
+
+    .slogan {
+      font-size: 1rem;
+      margin: 8px auto;
+      max-width: 90%;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      background-color: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid rgba(255,215,0,0.6);
+      box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+      transition: all 0.3s ease;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255,215,0,0.2);
+      color: white;
+      box-shadow: 0 6px 12px rgba(255,215,0,0.6);
+    }
+
+    .section2 {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: bgFade 20s infinite;
+    }
+
+    .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
+    .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
+    .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
+    .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
+
+    @keyframes bgFade {
+      0%, 12.5% { opacity: 1; }
+      25%, 100% { opacity: 0; }
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 1;
+      padding: 100px 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      background: transparent;
+      border-radius: 15px;
+    }
+
+    .section-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: goldenrod;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .section-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #eee;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .cta-buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      flex: 1 1 auto;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      background-color: rgba(255,215,0,0.8);
+      color: black;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      min-width: 100px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .cta-btn.email {
+      background-color: transparent;
+      border: 1px solid goldenrod; /* Smaller border */
+      color: goldenrod;
+    }
+
+    .cta-btn:hover {
+      background-color: rgba(255,215,0,1);
+      color: white;
+    }
+
+    .cta-btn.email:hover {
+      background-color: goldenrod;
+      color: white;
+    }
+
+    .cta-btn i {
+      margin-right: 4px;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #996515;
+      color: #FFCBA4;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .section1 {
+        padding: 10px 10px;
+      }
+
+      .logo {
+        max-width: 60px;
+      }
+
+      .slogan {
+        font-size: 0.95rem;
+      }
+
+      .nav-btn {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+        min-width: 100px;
+      }
+
+      .section-content {
+        padding: 60px 15px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cta-btn {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="section1">
+    <img src="willona.png" alt="Willona Logo" class="logo">
+    <h1 class="slogan"><b><i>We don’t just decorate spaces—we design moments that take your breath away.</i></b></h1>
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+    </div>
+  </div>
+
+  <!-- Section -->
+  <div class="section2">
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+
+    <div class="section-content">
+      <h2>Welcome to Willona’s Decor & Events</h2>
+      <p>
+        At Willona’s, we believe every occasion deserves beauty, elegance, and a touch of magic.
+        Whether it’s a wedding, birthday, graduation, or corporate event, our team transforms
+        ordinary spaces into breathtaking experiences. Let us turn your dreams into reality with
+        creativity and care.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/27685546465" class="cta-btn email" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:Mimi.Makhubo605@gmail.com" class="cta-btn email">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Willona’s™ — <i>We don’t just decorate spaces—we design moments that take your breath away.</i></p>
+  </footer>
+
+</body>
+</html>

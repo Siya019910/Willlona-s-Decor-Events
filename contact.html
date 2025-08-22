@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Willona’s Decor & Events</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    /* ===== Section 1: Header ===== */
+    .section1 {
+      text-align: center;
+      padding: 8px 20px;
+      background-color: #FFCBA4;
+      color: #996515;
+    }
+
+    .logo {
+      width: 120px;
+      max-width: 80%;
+    }
+
+    .slogan {
+      margin: 10px auto;
+      font-size: 1.2rem;
+      max-width: 90%;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      background-color: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid rgba(255,215,0,0.6);
+      box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255,215,0,0.2);
+      color: white;
+      box-shadow: 0 6px 12px rgba(255,215,0,0.6);
+    }
+
+    /* ===== Section 2: Contact ===== */
+    .section2 {
+      flex: 1;
+      padding: 80px 20px;
+      text-align: center;
+      background: url('img.jpeg') no-repeat center center;
+      background-size: cover;
+      color: white;
+    }
+
+    .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 15px;
+      background: transparent;
+    }
+
+    .section-content h2 {
+      margin-bottom: 15px;
+    }
+
+    .section-content p {
+      margin: 10px 0;
+      font-size: 1rem;
+      word-wrap: break-word;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      margin: 6px;
+      padding: 12px 25px;
+      background-color: rgba(255,215,0,0.8);
+      color: black;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+
+    .contact-btn:hover {
+      background-color: rgba(255,215,0,1);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #996515;
+      color: #FFCBA4;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Mobile Responsive ===== */
+    @media (max-width: 768px) {
+      .section1 { padding: 8px 10px; }
+      .logo { max-width: 100px; }
+      .slogan { font-size: 1rem; }
+      .nav-btn, .contact-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      .section2 { padding: 60px 10px; }
+      .section-content { padding: 15px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section 1: Header -->
+  <div class="section1">
+    <img src="willona.png" alt="Willona Logo" class="logo" />
+    <h1 class="slogan">
+      <b><i>We don’t just decorate spaces—we design moments that take your breath away.</i></b>
+    </h1>
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+    </div>
+  </div>
+
+  <!-- Section 2: Contact -->
+  <div class="section2">
+    <div class="section-content">
+      <h2>Contact Us</h2>
+      <p><i class="fas fa-map-marker-alt"></i> 530 Buthelezi Street, Twala Section, Katlehong, Germiston, Gauteng, 1431</p>
+      <p>
+        <a href="https://wa.me/27685546465" target="_blank" class="contact-btn">
+          <i class="fab fa-whatsapp"></i> 0685546465
+        </a>
+      </p>
+      <p>
+        <a href="mailto:Mimi.Makhubo605@gmail.com" target="_blank" class="contact-btn">
+          <i class="fas fa-envelope"></i> Mimi.Makhubo605@gmail.com
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Willona’s™ — <i>We don’t just decorate spaces—we design moments that take your breath away.</i></p>
+  </footer>
+
+</body>
+</html>
