@@ -1,347 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery – Willona’s Decor & Events</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
-      text-align: center;
-    }
-
-    .section1 {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background-color: #ffcba4;
-      color: #996515;
-      padding: 10px 0;
-    }
-
-    .logo { width: 120px; max-width: 80%; }
-
-    .slogan {
-      margin: 5px 0;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .nav-buttons {
-      margin-top: 5px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .nav-btn {
-      display: inline-block;
-      padding: 8px 16px;
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: black;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      border: 2px solid rgba(255, 215, 0, 0.6);
-      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
-      transition: all 0.3s ease;
-      min-width: 100px;
-      text-align: center;
-    }
-
-    .nav-btn:hover {
-      background-color: rgba(255, 215, 0, 0.2);
-      color: white;
-      box-shadow: 0 6px 12px rgba(255, 215, 0, 0.6);
-    }
-
-    h1 {
-      padding: 15px;
-      font-size: 1.8rem;
-      background: goldenrod;
-      color: #111;
-      margin: 0 0 10px 0;
-    }
-
-    h2 { color: goldenrod; margin-top: 20px; }
-
-    .month-desc {
-      font-size: 1rem;
-      color: #ccc;
-      margin: 5px 0 15px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 10px;
-      padding: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .gallery img, 
-    .gallery video {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery img:hover,
-    .gallery video:hover {
-      transform: scale(1.05);
-    }
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
-    }
-
-    .lightbox-content {
-      max-width: 95%;
-      max-height: 85%;
-    }
-
-    .lightbox-content img,
-    .lightbox-content video {
-      width: 100%;
-      height: auto;
-      max-height: 85vh;
-      border-radius: 12px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 30px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px 10px;
-      background-color: #996515;
-      color: #ffcba4;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .slogan { font-size: 1rem; }
-      .nav-btn { padding: 6px 12px; font-size: 0.9rem; margin: 4px; }
-      .gallery img, .gallery video { height: 140px; }
-    }
-
-    @media (max-width: 480px) {
-      .nav-btn { padding: 6px 10px; font-size: 0.85rem; min-width: 80px; }
-      .gallery img, .gallery video { height: 120px; }
-      .slogan { font-size: 0.95rem; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery – Willona’s Decor & Events</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+body { margin:0; font-family:Arial,sans-serif; background:#111; color:#fff; text-align:center; }
+.section1 { position:sticky; top:0; z-index:999; background-color:#ffcba4; color:#996515; padding:10px 0; }
+.logo { width:120px; max-width:80%; }
+.slogan { margin:5px 0; font-size:1.1rem; font-weight:bold; }
+.nav-buttons { margin-top:5px; display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.nav-btn { display:inline-block; padding:8px 16px; background-color:rgba(255,255,255,0.1); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); color:black; text-decoration:none; border-radius:25px; font-weight:bold; border:2px solid rgba(255,215,0,0.6); box-shadow:0 4px 8px rgba(255,215,0,0.3); transition:all 0.3s ease; min-width:100px; text-align:center; }
+.nav-btn:hover { background-color:rgba(255,215,0,0.2); color:white; box-shadow:0 6px 12px rgba(255,215,0,0.6); }
+h1 { padding:15px; font-size:1.8rem; background:goldenrod; color:#111; margin:0 0 10px 0; }
+h2 { color:goldenrod; margin-top:20px; }
+.month-desc { font-size:1rem; color:#ccc; margin:5px 0 15px; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:10px; padding:10px; }
+.gallery .media-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.gallery img, .gallery video { width:100%; height:180px; object-fit:cover; border-radius:10px; cursor:pointer; transition:transform 0.3s ease; }
+.gallery img:hover, .gallery video:hover { transform:scale(1.05); }
+.download-btn { display:inline-block; padding:5px 10px; background-color:rgba(255,215,0,0.6); color:black; text-decoration:none; border-radius:15px; font-weight:bold; font-size:0.9rem; transition:all 0.3s ease; }
+.download-btn:hover { background-color:gold; color:#111; }
+.lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; z-index:1000; padding:20px; }
+.lightbox-content { max-width:95%; max-height:85%; }
+.lightbox-content img, .lightbox-content video { width:100%; height:auto; max-height:85vh; border-radius:12px; }
+.close-btn { position:absolute; top:15px; right:20px; font-size:30px; color:#fff; cursor:pointer; font-weight:bold; }
+footer { text-align:center; padding:15px 10px; background-color:#996515; color:#ffcba4; font-size:0.9rem; }
+@media (max-width:768px){ .slogan{ font-size:1rem; } .nav-btn{ padding:6px 12px; font-size:0.9rem; margin:4px; } .gallery img, .gallery video{ height:140px; } }
+@media (max-width:480px){ .nav-btn{ padding:6px 10px; font-size:0.85rem; min-width:80px; } .gallery img, .gallery video{ height:120px; } .slogan{ font-size:0.95rem; } }
+</style>
 </head>
 <body>
 
-  <div class="section1">
-    <img src="willona.png" alt="Willona Logo" class="logo">
-    <div class="slogan">We don’t just decorate spaces—we design moments that take your breath away.</div>
-    <div class="nav-buttons">
-      <a href="index.html" class="nav-btn">Home</a>
-      <a href="services.html" class="nav-btn">Services</a>
-      <a href="gallery.html" class="nav-btn">Gallery</a>
-      <a href="contact.html" class="nav-btn">Contact</a>
-    </div>
+<div class="section1">
+  <img src="willona.png" alt="Willona Logo" class="logo">
+  <div class="slogan">We don’t just decorate spaces—we design moments that take your breath away.</div>
+  <div class="nav-buttons">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="services.html" class="nav-btn">Services</a>
+    <a href="gallery.html" class="nav-btn">Gallery</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
   </div>
+</div>
 
-  <h1>Our Gallery</h1>
+<h1>Our Gallery</h1>
 
-  <div style="margin: 20px;">
-    <label for="monthFilter" style="font-weight: bold; color: goldenrod;">Filter by Month:</label>
-    <select id="monthFilter" onchange="filterGallery()" style="padding: 8px; border-radius: 5px;">
-      <option value="all">All</option>
-      <option value="june">June</option>
-      <option value="july">July</option>
-      <option value="august">August</option>
-    </select>
+<div style="margin:20px;">
+  <label for="monthFilter" style="font-weight:bold; color:goldenrod;">Filter by Month:</label>
+  <select id="monthFilter" onchange="filterGallery()" style="padding:8px; border-radius:5px;">
+    <option value="all">All</option>
+    <option value="june">June</option>
+    <option value="july">July</option>
+    <option value="august">August</option>
+  </select>
+</div>
+
+<!-- June -->
+<div class="month-group june">
+  <h2>June</h2>
+  <p class="month-desc">Special Events</p>
+  <div class="gallery">
+    <div class="media-item"><img src="imgj1.jpg" alt="Special Events"><a href="imgj1.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj2.jpg" alt="Special Events"><a href="imgj2.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj3.jpg" alt="Special Events"><a href="imgj3.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj4.jpg" alt="Special Events"><a href="imgj4.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj5.jpg" alt="Special Events"><a href="imgj5.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj6.jpg" alt="Special Events"><a href="imgj6.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj7.jpg" alt="Special Events"><a href="imgj7.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj8.jpg" alt="Special Events"><a href="imgj8.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj9.jpg" alt="Special Events"><a href="imgj9.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj10.jpg" alt="Special Events"><a href="imgj10.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj11.jpg" alt="Special Events"><a href="imgj11.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj12.jpg" alt="Special Events"><a href="imgj12.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgj13.jpg" alt="Special Events"><a href="imgj13.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidj1.mp4" controls muted></video><a href="vidj1.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidj2.mp4" controls muted></video><a href="vidj2.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidj3.mp4" controls muted></video><a href="vidj3.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidj4.mp4" controls muted></video><a href="vidj4.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidj5.mp4" controls muted></video><a href="vidj5.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidj6.mp4" controls muted></video><a href="vidj6.mp4" download class="download-btn">Download</a></div>
   </div>
+</div>
 
-  <!-- June -->
-  <div class="month-group june">
-    <h2>June</h2>
-    <p class="month-desc">Special Events</p>
-    <div class="gallery">
-      <img src="imgj1.jpg" alt="Special Events">
-      <img src="imgj2.jpg" alt="Special Events">
-      <img src="imgj3.jpg" alt="Special Events">
-      <img src="imgj4.jpg" alt="Special Events">
-      <img src="imgj5.jpg" alt="Special Events">
-      <img src="imgj6.jpg" alt="Special Events">
-      <img src="imgj7.jpg" alt="Special Events">
-      <img src="imgj8.jpg" alt="Special Events">
-      <img src="imgj9.jpg" alt="Special Events">
-      <img src="imgj10.jpg" alt="Special Events">
-      <img src="imgj11.jpg" alt="Special Events">
-      <img src="imgj12.jpg" alt="Special Events">
-      <img src="imgj13.jpg" alt="Special Events">
-      <video src="vidj1.mp4" controls muted></video>
-      <video src="vidj2.mp4" controls muted></video>
-      <video src="vidj3.mp4" controls muted></video>
-      <video src="vidj4.mp4" controls muted></video>
-      <video src="vidj5.mp4" controls muted></video>
-      <video src="vidj6.mp4" controls muted></video>
-    </div>
+<!-- July -->
+<div class="month-group july">
+  <h2>July</h2>
+  <p class="month-desc">Special Events</p>
+  <div class="gallery">
+    <div class="media-item"><img src="imgjl1.jpg" alt="Special Events"><a href="imgjl1.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl2.jpg" alt="Special Events"><a href="imgjl2.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl3.jpg" alt="Special Events"><a href="imgjl3.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl4.jpg" alt="Special Events"><a href="imgjl4.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl5.jpg" alt="Special Events"><a href="imgjl5.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl6.jpg" alt="Special Events"><a href="imgjl6.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl7.jpg" alt="Special Events"><a href="imgjl7.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl8.jpg" alt="Special Events"><a href="imgjl8.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl9.jpg" alt="Special Events"><a href="imgjl9.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl10.jpg" alt="Special Events"><a href="imgjl10.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl11.jpg" alt="Special Events"><a href="imgjl11.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgjl12.jpg" alt="Special Events"><a href="imgjl12.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidjl1.mp4" controls muted></video><a href="vidjl1.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidjl2.mp4" controls muted></video><a href="vidjl2.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidjl3.mp4" controls muted></video><a href="vidjl3.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidjl4.mp4" controls muted></video><a href="vidjl4.mp4" download class="download-btn">Download</a></div>
   </div>
+</div>
 
-  <!-- July -->
-  <div class="month-group july">
-    <h2>July</h2>
-    <p class="month-desc">Special Events</p>
-    <div class="gallery">
-      <img src="imgjl1.jpg" alt="Special Events">
-      <img src="imgjl2.jpg" alt="Special Events">
-      <img src="imgjl3.jpg" alt="Special Events">
-      <img src="imgjl4.jpg" alt="Special Events">
-      <img src="imgjl5.jpg" alt="Special Events">
-      <img src="imgjl6.jpg" alt="Special Events">
-      <img src="imgjl7.jpg" alt="Special Events">
-      <img src="imgjl8.jpg" alt="Special Events">
-      <img src="imgjl9.jpg" alt="Special Events">
-      <img src="imgjl10.jpg" alt="Special Events">
-      <img src="imgjl11.jpg" alt="Special Events">
-      <img src="imgjl12.jpg" alt="Special Events">
-      <video src="vidjl1.mp4" controls muted></video>
-      <video src="vidjl2.mp4" controls muted></video>
-      <video src="vidjl3.mp4" controls muted></video>
-      <video src="vidjl4.mp4" controls muted></video>
-    </div>
+<!-- August -->
+<div class="month-group august">
+  <h2>August</h2>
+  <p class="month-desc">Special Events</p>
+  <div class="gallery">
+    <div class="media-item"><img src="imgau1.jpg" alt="Special Events"><a href="imgau1.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau2.jpg" alt="Special Events"><a href="imgau2.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau3.jpg" alt="Special Events"><a href="imgau3.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau4.jpg" alt="Special Events"><a href="imgau4.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau5.jpg" alt="Special Events"><a href="imgau5.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau6.jpg" alt="Special Events"><a href="imgau6.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau7.jpg" alt="Special Events"><a href="imgau7.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau8.jpg" alt="Special Events"><a href="imgau8.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau9.jpg" alt="Special Events"><a href="imgau9.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau10.jpg" alt="Special Events"><a href="imgau10.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau11.jpg" alt="Special Events"><a href="imgau11.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau12.jpg" alt="Special Events"><a href="imgau12.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau13.jpg" alt="Special Events"><a href="imgau13.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau15.jpg" alt="Special Events"><a href="imgau15.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau16.jpg" alt="Special Events"><a href="imgau16.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau17.jpg" alt="Special Events"><a href="imgau17.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau18.jpg" alt="Special Events"><a href="imgau18.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau1.mp4" controls muted></video><a href="vidau1.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau2.mp4" controls muted></video><a href="vidau2.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau3.mp4" controls muted></video><a href="vidau3.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau4.mp4" controls muted></video><a href="vidau4.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau5.mp4" controls muted></video><a href="vidau5.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau6.mp4" controls muted></video><a href="vidau6.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau7.mp4" controls muted></video><a href="vidau7.mp4" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau8.mp4" controls muted></video><a href="vidau8.mp4" download class="download-btn">Download</a></div>
   </div>
+</div>
 
-  
-  <!-- August - Special Events -->
-  <div class="month-group august">
-    <h2>August</h2>
-    <p class="month-desc">Special Events</p>
-    <div class="gallery">
-      <img src="imgau1.jpg" alt="Special Events">
-      <img src="imgau2.jpg" alt="Special Events">
-      <img src="imgau3.jpg" alt="Special Events">
-      <img src="imgau4.jpg" alt="Special Events">
-      <img src="imgau5.jpg" alt="Special Events">
-      <img src="imgau6.jpg" alt="Special Events">
-      <img src="imgau7.jpg" alt="Special Events">
-      <img src="imgau8.jpg" alt="Special Events">
-      <img src="imgau9.jpg" alt="Special Events">
-      <img src="imgau10.jpg" alt="Special Events">
-      <img src="imgau11.jpg" alt="Special Events">
-      <img src="imgau12.jpg" alt="Special Events">
-      <img src="imgau13.jpg" alt="Special Events">
-      <img src="imgau15.jpg" alt="Special Events">
-      <img src="imgau16.jpg" alt="Special Events">
-      <img src="imgau17.jpg" alt="Special Events">
-      <img src="imgau18.jpg" alt="Special Events">
-      <video src="vidau1.mp4" controls muted></video>
-      <video src="vidau2.mp4" controls muted></video>
-      <video src="vidau3.mp4" controls muted></video>
-      <video src="vidau4.mp4" controls muted></video>
-      <video src="vidau5.mp4" controls muted></video>
-      <video src="vidau6.mp4" controls muted></video>
-      <video src="vidau7.mp4" controls muted></video>
-      <video src="vidau8.mp4" controls muted></video>
-    </div>
+<!-- August Birthday -->
+<div class="month-group august birthday">
+  <p class="month-desc">Birthday Party</p>
+  <div class="gallery">
+    <div class="media-item"><img src="imgau19.jpg" alt="Birthday Party"><a href="imgau19.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau21.jpg" alt="Birthday Party"><a href="imgau21.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau23.jpg" alt="Birthday Party"><a href="imgau23.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau24.jpg" alt="Birthday Party"><a href="imgau24.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau25.jpg" alt="Birthday Party"><a href="imgau25.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau27.jpg" alt="Birthday Party"><a href="imgau27.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau28.jpg" alt="Birthday Party"><a href="imgau28.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau29.jpg" alt="Birthday Party"><a href="imgau29.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau31.jpg" alt="Birthday Party"><a href="imgau31.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau32.jpg" alt="Birthday Party"><a href="imgau32.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau9.mp4" controls muted></video><a href="vidau9.mp4" download class="download-btn">Download</a></div>
   </div>
+</div>
 
-  <!-- August - Birthday -->
-  <div class="month-group august birthday">
-    <p class="month-desc">Birthday Party</p>
-    <div class="gallery">
-      <img src="imgau19.jpg" alt="Birthday Party">
-      <img src="imgau21.jpg" alt="Birthday Party">
-      <img src="imgau23.jpg" alt="Birthday Party">
-      <img src="imgau24.jpg" alt="Birthday Party">
-      <img src="imgau25.jpg" alt="Birthday Party">
-      <img src="imgau27.jpg" alt="Birthday Party">
-      <img src="imgau28.jpg" alt="Birthday Party">
-      <img src="imgau29.jpg" alt="Birthday Party">
-      <img src="imgau31.jpg" alt="Birthday Party">
-      <img src="imgau32.jpg" alt="Birthday Party">
-      <video src="vidau9.mp4" controls muted></video>
-    </div>
+<!-- August Wedding -->
+<div class="month-group august wedding">
+  <p class="month-desc">Wedding</p>
+  <div class="gallery">
+    <div class="media-item"><img src="imgau20.jpg" alt="Wedding"><a href="imgau20.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau22.jpg" alt="Wedding"><a href="imgau22.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau26.jpg" alt="Wedding"><a href="imgau26.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><img src="imgau30.jpg" alt="Wedding"><a href="imgau30.jpg" download class="download-btn">Download</a></div>
+    <div class="media-item"><video src="vidau10.mp4" controls muted></video><a href="vidau10.mp4" download class="download-btn">Download</a></div>
   </div>
+</div>
 
-  <!-- August - Wedding -->
-  <div class="month-group august wedding">
-    <p class="month-desc">Wedding</p>
-    <div class="gallery">
-      <img src="imgau20.jpg" alt="Wedding">
-      <img src="imgau22.jpg" alt="Wedding">
-      <img src="imgau26.jpg" alt="Wedding">
-      <img src="imgau30.jpg" alt="Wedding">
-      <video src="vidau10.mp4" controls muted></video>
-    </div>
-  </div>
+<div class="lightbox" id="lightbox">
+  <span class="close-btn" onclick="closeLightbox()">&times;</span>
+  <div class="lightbox-content" id="lightbox-content"></div>
+</div>
 
-  <div class="lightbox" id="lightbox">
-    <span class="close-btn" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content" id="lightbox-content"></div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Willona’s™ — We don’t just decorate spaces—we design moments that take your breath away.</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 Willona’s™ — We don’t just decorate spaces—we design moments that take your breath away.</p>
+</footer>
 
 <script>
-  // Gallery Lightbox
-  const galleryItems = document.querySelectorAll('.gallery img, .gallery video');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxContent = document.getElementById('lightbox-content');
-  let currentIndex = -1;
-
-  function showItem(index) {
-    if(index<0 || index>=galleryItems.length) return;
-    currentIndex = index;
-    const item = galleryItems[currentIndex];
-    lightbox.style.display='flex';
-    if(item.tagName==='IMG'){
-      lightboxContent.innerHTML=`<img src="${item.src}" alt="">`;
-    } else {
-      lightboxContent.innerHTML=`<video src="${item.src}" controls autoplay></video>`;
-    }
-  }
-
-  galleryItems.forEach((item,index)=>item.addEventListener('click',()=>showItem(index)));
-
-  function closeLightbox(){ lightbox.style.display='none'; lightboxContent.innerHTML=''; currentIndex=-1; }
-  function nextItem(){ showItem(currentIndex<galleryItems.length-1?currentIndex+1:0); }
-  function prevItem(){ showItem(currentIndex>0?currentIndex-1:galleryItems.length-1); }
-  document.addEventListener('keydown',(e)=>{ if(lightbox.style.display==='flex'){ if(e.key==='Escape') closeLightbox(); if(e.key==='ArrowRight') nextItem(); if(e.key==='ArrowLeft') prevItem(); } });
-
-  // Month Filter
-  function filterGallery(){
-    const filter=document.getElementById('monthFilter').value;
-    const groups=document.querySelectorAll('.month-group');
-    groups.forEach(g=>{
-      if(filter==='all') g.style.display='block';
-      else g.classList.contains(filter)? g.style.display='block' : g.style.display='none';
-    });
-  }
-  window.addEventListener('DOMContentLoaded',filterGallery);
+const galleryItems=document.querySelectorAll('.gallery img,.gallery video');
+const lightbox=document.getElementById('lightbox');
+const lightboxContent=document.getElementById('lightbox-content');
+let currentIndex=-1;
+function showItem(index){if(index<0||index>=galleryItems.length)return;currentIndex=index;const item=galleryItems[currentIndex];lightbox.style.display='flex';if(item.tagName==='IMG'){lightboxContent.innerHTML=`<img src="${item.src}" alt="">`; }else{lightboxContent.innerHTML=`<video src="${item.src}" controls autoplay></video>`;}}
+galleryItems.forEach((item,index)=>item.addEventListener('click',()=>showItem(index)));
+function closeLightbox(){lightbox.style.display='none';lightboxContent.innerHTML='';currentIndex=-1;}
+function nextItem(){showItem(currentIndex<galleryItems.length-1?currentIndex+1:0);}
+function prevItem(){showItem(currentIndex>0?currentIndex-1:galleryItems.length-1);}
+document.addEventListener('keydown',(e)=>{if(lightbox.style.display==='flex'){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowRight')nextItem();if(e.key==='ArrowLeft')prevItem();}});
+function filterGallery(){const filter=document.getElementById('monthFilter').value;const groups=document.querySelectorAll('.month-group');groups.forEach(g=>{if(filter==='all')g.style.display='block';else g.classList.contains(filter)?g.style.display='block':g.style.display='none';});}
+window.addEventListener('DOMContentLoaded',filterGallery);
 </script>
+
 </body>
 </html>
+
+
