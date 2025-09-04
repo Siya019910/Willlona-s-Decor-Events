@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ – Willona’s Decor & Events</title>
+  <style>
+    /* === Shared Styles (same as other pages) === */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section1 {
+      background-color: #FFCBA4;
+      color: #996515;
+      text-align: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      width: 70px;
+      max-width: 100%;
+    }
+
+    .slogan {
+      font-size: 0.95rem;
+      margin: 6px auto;
+      max-width: 95%;
+      line-height: 1.3;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .nav-btn {
+      padding: 8px 14px;
+      background-color: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid rgba(255,215,0,0.6);
+      box-shadow: 0 4px 8px rgba(255,215,0,0.3);
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255,215,0,0.2);
+      color: white;
+      box-shadow: 0 6px 12px rgba(255,215,0,0.6);
+    }
+
+    .section2 {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: bgFade 20s infinite;
+    }
+
+    .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
+    .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
+    .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
+    .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
+
+    @keyframes bgFade {
+      0%, 12.5% { opacity: 1; }
+      25%, 100% { opacity: 0; }
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 1;
+      padding: 60px 15px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-content h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: goldenrod;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #996515;
+      color: #FFCBA4;
+      font-size: 0.85rem;
+    }
+
+    /* === FAQ Styles === */
+    .faq-container {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .faq-item {
+      background: rgba(0,0,0,0.55);
+      margin-bottom: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid goldenrod;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,215,0,0.1);
+      border: none;
+      color: goldenrod;
+      font-weight: bold;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .faq-question:hover {
+      background: rgba(255,215,0,0.3);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 14px;
+      color: #eee;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 400px;
+      padding: 12px 14px;
+    }
+
+    /* === Mobile Tweaks === */
+    @media (max-width: 768px) {
+      .logo { width: 60px; }
+      .slogan { font-size: 0.85rem; }
+      .nav-btn { font-size: 0.85rem; padding: 7px 12px; min-width: 80px; }
+      .section-content h2 { font-size: 1.4rem; }
+      .faq-question { font-size: 0.95rem; padding: 10px 12px; }
+      .faq-answer { font-size: 0.9rem; }
+    }
+
+    @media (max-width: 480px) {
+      .section-content { padding: 40px 10px; }
+      .slogan { font-size: 0.8rem; }
+      .faq-question { font-size: 0.9rem; }
+      .faq-answer { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="section1">
+    <img src="willona.png" alt="Logo" class="logo">
+    <div class="slogan"><b><i>Willona’s Decor & Events – Turning Dreams into Reality</i></b></div>
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+      <a href="faq.html" class="nav-btn">FAQ</a>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section2">
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+
+    <div class="section-content">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">What services do you offer?</button>
+          <div class="faq-answer">
+            <p>We specialize in weddings, birthdays, corporate events, and unique theme setups tailored to your vision.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Do you provide packages?</button>
+          <div class="faq-answer">
+            <p>Yes, we offer flexible packages that can be customized to suit your budget and event size.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">How far in advance should I book?</button>
+          <div class="faq-answer">
+            <p>We recommend booking 2–3 months in advance to secure your preferred date and theme.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Do you only do decor or full event planning?</button>
+          <div class="faq-answer">
+            <p>We handle both – from complete event planning to decor-only, based on your needs.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Can I request a custom theme?</button>
+          <div class="faq-answer">
+            <p>Absolutely! We love bringing new creative themes to life and will design something unique for you.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">How do I request a quote?</button>
+          <div class="faq-answer">
+            <p>Visit our <a href="contact.html" style="color:goldenrod;">Contact Page</a> and share details of your event, and we’ll get back with a personalized quote.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Willona’s Decor & Events. All Rights Reserved.
+  </footer>
+
+  <!-- FAQ Accordion Script -->
+  <script>
+    document.querySelectorAll(".faq-question").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.parentElement;
+        item.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>
