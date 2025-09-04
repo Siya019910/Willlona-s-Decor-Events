@@ -41,34 +41,28 @@
       max-width: 90%;
     }
 
-    .nav-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
     .nav-btn {
-      padding: 8px 16px;
-      background-color: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: black;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      border: 2px solid rgba(255,215,0,0.6);
-      box-shadow: 0 4px 8px rgba(255,215,0,0.3);
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
+  padding: 4px 8px;              /* much smaller padding */
+  font-size: 0.7rem;             /* reduced font size */
+  min-width: 60px;               /* smaller width */
+  border-radius: 15px;           /* smaller rounded corners */
+  background-color: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid rgba(255,215,0,0.6); /* thinner border */
+  box-shadow: 0 2px 4px rgba(255,215,0,0.3); /* smaller shadow */
+  transition: all 0.3s ease;
+  text-align: center;
+}
 
-    .nav-btn:hover {
-      background-color: rgba(255,215,0,0.2);
-      color: white;
-      box-shadow: 0 6px 12px rgba(255,215,0,0.6);
-    }
+.nav-btn:hover {
+  background-color: rgba(255,215,0,0.2);
+  color: white;
+  box-shadow: 0 3px 6px rgba(255,215,0,0.6);
+}
 
     /* ===== Section 2: Contact ===== */
     .section2 {
@@ -180,4 +174,5 @@
 
 </body>
 </html>
+
 
