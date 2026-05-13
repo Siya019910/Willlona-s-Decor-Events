@@ -2,16 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  /* Critical for mobile scaling */
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Contact | Willona’s Decor & Events</title>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
   <style>
+    /* Prevent any horizontal sliding/scrolling */
     html, body {
       height: 100%;
       margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden; /* Fixes sliding */
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
     }
 
     body {
@@ -25,110 +35,131 @@
     /* ===== Section 1: Header ===== */
     .section1 {
       text-align: center;
-      padding: 8px 20px;
+      padding: 10px 5px;
       background-color: #FFCBA4;
       color: #996515;
+      width: 100%;
     }
 
+    /* Logo: Medium Size */
     .logo {
-      width: 120px;
-      max-width: 80%;
+      width: 150px; 
+      height: auto;
+      max-width: 60%;
+      margin-bottom: 5px;
     }
 
     .slogan {
-      margin: 10px auto;
-      font-size: 1.2rem;
-      max-width: 90%;
+      margin: 5px auto 12px;
+      font-size: 0.95rem;
+      max-width: 95%;
+      line-height: 1.2;
+    }
+
+    /* Navigation: Forced Straight Line */
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap; /* Ensures straight line */
+      gap: 4px; /* Space between items */
+      width: 100%;
+      padding: 0 5px;
     }
 
     .nav-btn {
-  padding: 4px 8px;              /* much smaller padding */
-  font-size: 0.7rem;             /* reduced font size */
-  min-width: 60px;               /* smaller width */
-  border-radius: 15px;           /* smaller rounded corners */
-  background-color: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  border: 1px solid rgba(255,215,0,0.6); /* thinner border */
-  box-shadow: 0 2px 4px rgba(255,215,0,0.3); /* smaller shadow */
-  transition: all 0.3s ease;
-  text-align: center;
-}
+      padding: 6px 4px;
+      font-size: 0.65rem; /* Small enough to fit all screens */
+      flex: 1; /* Distributes space equally */
+      max-width: 75px;
+      border-radius: 12px;
+      background-color: rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid rgba(153, 101, 21, 0.3);
+      transition: all 0.3s ease;
+      text-align: center;
+      white-space: nowrap; /* Keeps text on one line */
+    }
 
-.nav-btn:hover {
-  background-color: rgba(255,215,0,0.2);
-  color: white;
-  box-shadow: 0 3px 6px rgba(255,215,0,0.6);
-}
+    .nav-btn:hover {
+      background-color: #996515;
+      color: white;
+    }
 
     /* ===== Section 2: Contact ===== */
     .section2 {
       flex: 1;
-      padding: 80px 20px;
+      padding: 40px 15px;
       text-align: center;
-      background: url('img.jpeg') no-repeat center center;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img.jpeg') no-repeat center center;
       background-size: cover;
       color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .section-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      padding: 15px;
       border-radius: 15px;
-      background: transparent;
     }
 
     .section-content h2 {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     .section-content p {
-      margin: 10px 0;
-      font-size: 1rem;
+      margin: 15px 0;
+      font-size: 0.9rem;
       word-wrap: break-word;
     }
 
     .contact-btn {
       display: inline-block;
-      margin: 6px;
-      padding: 12px 25px;
-      background-color: rgba(255,215,0,0.8);
-      color: black;
+      margin: 8px auto;
+      padding: 10px 20px;
+      background-color: #FFCBA4;
+      color: #996515;
       text-decoration: none;
       border-radius: 25px;
       font-weight: bold;
       transition: 0.3s;
-      white-space: nowrap;
+      width: 90%; /* Better for mobile tapping */
+      max-width: 300px;
     }
 
-    .contact-btn:hover {
-      background-color: rgba(255,215,0,1);
-    }
-
-    /* ===== Footer ===== */
+    /* ===== Footer: Decreased Size ===== */
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 10px 5px; /* Minimal padding */
       background-color: #996515;
       color: #FFCBA4;
-      font-size: 0.9rem;
+      font-size: 0.75rem; /* Smaller font */
+      width: 100%;
     }
 
-    /* ===== Mobile Responsive ===== */
-    @media (max-width: 768px) {
-      .section1 { padding: 8px 10px; }
-      .logo { max-width: 100px; }
-      .slogan { font-size: 1rem; }
-      .nav-btn, .contact-btn {
-        padding: 8px 16px;
-        font-size: 0.9rem;
+    footer p {
+      margin: 0;
+    }
+
+    /* ===== Mobile Specific Adjustments ===== */
+    @media (max-width: 380px) {
+      .nav-btn {
+        font-size: 0.6rem;
+        padding: 5px 2px;
       }
-      .section2 { padding: 60px 10px; }
-      .section-content { padding: 15px; font-size: 0.95rem; }
+      .slogan {
+        font-size: 0.85rem;
+      }
+      .logo {
+        width: 120px;
+      }
     }
   </style>
 </head>
@@ -138,8 +169,10 @@
   <div class="section1">
     <img src="willona.png" alt="Willona Logo" class="logo" />
     <h1 class="slogan">
-      <b><i>We don’t just decorate spaces—we design moments that take your breath away.</i></b>
+      <b><i>We don’t just decorate spaces—we design moments.</i></b>
     </h1>
+    
+    <!-- Straight line navigation -->
     <div class="nav-buttons">
       <a href="index.html" class="nav-btn">Home</a>
       <a href="services.html" class="nav-btn">Services</a>
@@ -153,26 +186,22 @@
   <div class="section2">
     <div class="section-content">
       <h2>Contact Us</h2>
-      <p><i class="fas fa-map-marker-alt"></i> 530 Buthelezi Street, Twala Section, Katlehong, Germiston, Gauteng, 1431</p>
-      <p>
-        <a href="https://wa.me/27685546465" target="_blank" class="contact-btn">
-          <i class="fab fa-whatsapp"></i> 0685546465
-        </a>
-      </p>
-      <p>
-        <a href="mailto:Mimi.Makhubo605@gmail.com" target="_blank" class="contact-btn">
-          <i class="fas fa-envelope"></i> Mimi.Makhubo605@gmail.com
-        </a>
-      </p>
+      <p><i class="fas fa-map-marker-alt"></i> 530 Buthelezi Street, Twala Section, Katlehong, Germiston, 1431</p>
+      
+      <a href="https://wa.me/27685546465" target="_blank" class="contact-btn">
+        <i class="fab fa-whatsapp"></i> 0685546465
+      </a>
+      
+      <a href="mailto:Mimi.Makhubo605@gmail.com" target="_blank" class="contact-btn">
+        <i class="fas fa-envelope"></i> Email Us
+      </a>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer (Small & Compact) -->
   <footer>
-    <p>© 2025 Willona’s™ — <i>We don’t just decorate spaces—we design moments that take your breath away.</i></p>
+    <p>© 2025 Willona’s™ — Design Moments.</p>
   </footer>
 
 </body>
 </html>
-
-
