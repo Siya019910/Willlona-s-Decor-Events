@@ -1,271 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>FAQ – Willona’s Decor & Events</title>
-  <style>
-    /* === Global Resets === */
-    * {
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FAQ – Willona’s Decor & Events</title>
+  <style>
+    /* === Global Resets === */
+    * {
+      box-sizing: border-box;
+    }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-      overflow-x: hidden; /* Total fix for horizontal sliding */
-    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden; /* Prevents horizontal sliding */
+    }
 
-    body {
-      display: flex;
-      flex-direction: column;
-    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
 
-    /* === Section 1: Header (Optimized for Mobile) === */
-    .section1 {
-      background-color: #FFCBA4;
-      color: #996515;
-      text-align: center;
-      padding: 15px 5px 10px; /* Balanced padding */
-    }
+    /* === Section 1: Header (Fixed for Mobile Line) === */
+    .section1 {
+      background-color: #FFCBA4;
+      color: #996515;
+      text-align: center;
+      padding: 10px 5px;
+    }
 
-    .logo {
-      width: 90px; /* Medium Size */
-      height: auto;
-      margin-bottom: 5px;
-    }
+    .logo {
+      width: 70px;
+      height: auto;
+    }
 
-    .slogan {
-      font-size: 0.85rem;
-      margin: 0 auto 12px;
-      max-width: 90%;
-      line-height: 1.2;
-      font-weight: bold;
-      font-style: italic;
-    }
+    .slogan {
+      font-size: 0.9rem;
+      margin: 5px auto 12px;
+      max-width: 95%;
+      line-height: 1.2;
+      font-weight: bold;
+      font-style: italic;
+    }
 
-    /* Force nav items into a straight line without wrapping */
-    .nav-buttons {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap; /* Prevents jumping to second line */
-      justify-content: space-evenly; /* Even spacing */
-      align-items: center;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 0 2px;
-    }
+    /* Force nav items into a straight line */
+    .nav-buttons {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 3px;
+      width: 100%;
+      padding: 0 4px;
+    }
 
-    .nav-btn {
-      flex: 1;
-      margin: 0 2px;
-      padding: 8px 0;
-      font-size: 0.68rem; /* Precision size for mobile fitting */
-      background-color: rgba(255,255,255,0.3);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid rgba(153, 101, 21, 0.2);
-      border-radius: 6px;
-      transition: background 0.3s;
-      text-align: center;
-      white-space: nowrap;
-    }
+    .nav-btn {
+      flex: 1;
+      padding: 6px 2px;
+      font-size: 0.65rem; /* Small enough to fit all on one line */
+      min-width: 0;
+      background-color: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid rgba(153, 101, 21, 0.3);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
 
-    .nav-btn:hover {
-      background-color: #996515;
-      color: #fff;
-    }
+    .nav-btn:hover {
+      background-color: #996515;
+      color: white;
+    }
 
-    /* === Section 2: FAQ Content === */
-    .section2 {
-      flex: 1;
-      position: relative;
-      min-height: 60vh;
-    }
+    /* === Section 2: FAQ Content === */
+    .section2 {
+      flex: 1;
+      position: relative;
+      min-height: 80vh;
+    }
 
-    .bg-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      animation: bgFade 20s infinite;
-      z-index: -1;
-    }
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      animation: bgFade 20s infinite;
+      z-index: -1;
+    }
 
-    .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
-    .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
-    .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
-    .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
+    .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
+    .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
+    .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
+    .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
 
-    @keyframes bgFade {
-      0%, 12.5% { opacity: 0.3; } 
-      25%, 100% { opacity: 0; }
-    }
+    @keyframes bgFade {
+      0%, 12.5% { opacity: 0.4; } /* Dimmed for readability */
+      25%, 100% { opacity: 0; }
+    }
 
-    .section-content {
-      position: relative;
-      z-index: 1;
-      padding: 30px 15px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    .section-content {
+      position: relative;
+      z-index: 1;
+      padding: 40px 15px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-    .section-content h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: #FFD700;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
+    .section-content h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: goldenrod;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    }
 
-    /* === FAQ Accordion === */
-    .faq-container {
-      text-align: left;
-    }
+    /* === FAQ Styles === */
+    .faq-container {
+      text-align: left;
+      margin-top: 10px;
+    }
 
-    .faq-item {
-      background: rgba(0,0,0,0.8);
-      margin-bottom: 8px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(218, 165, 32, 0.4);
-    }
+    .faq-item {
+      background: rgba(0,0,0,0.7);
+      margin-bottom: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid goldenrod;
+    }
 
-    .faq-question {
-      width: 100%;
-      padding: 15px;
-      background: none;
-      border: none;
-      color: #FFD700;
-      font-weight: bold;
-      text-align: left;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: block;
-    }
+    .faq-question {
+      width: 100%;
+      padding: 14px;
+      background: rgba(255,215,0,0.05);
+      border: none;
+      color: goldenrod;
+      font-weight: bold;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
 
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding: 0 15px;
-      color: #ddd;
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      padding: 0 14px;
+      color: #eee;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.05);
+    }
 
-    .faq-item.active .faq-answer {
-      max-height: 200px;
-      padding: 5px 15px 15px;
-    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 12px 14px;
+    }
 
-    /* === Reduced Footer === */
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #996515;
-      color: #FFCBA4;
-      font-size: 0.65rem; /* Very compact */
-      letter-spacing: 0.5px;
-    }
+    /* === Footer (Decreased Size) === */
+    footer {
+      text-align: center;
+      padding: 8px 10px;
+      background-color: #996515;
+      color: #FFCBA4;
+      font-size: 0.7rem; /* Smaller for mobile */
+    }
 
-    /* === Desktop Enhancements === */
-    @media (min-width: 768px) {
-      .nav-btn { font-size: 0.9rem; padding: 10px 15px; margin: 0 5px; }
-      .nav-buttons { max-width: 700px; }
-      .logo { width: 110px; }
-      .slogan { font-size: 1.1rem; }
-      .section-content h2 { font-size: 2rem; }
-      footer { font-size: 0.8rem; }
-    }
-  </style>
+    /* === Desktop Adjustments === */
+    @media (min-width: 768px) {
+      .nav-btn { font-size: 0.85rem; padding: 8px 15px; flex: none; width: 100px; }
+      .nav-buttons { gap: 10px; }
+      .logo { width: 100px; }
+      .slogan { font-size: 1.1rem; }
+      footer { font-size: 0.85rem; padding: 15px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="section1">
-    <img src="willona.png" alt="Logo" class="logo">
-    <div class="slogan">Willona’s Decor & Events – Turning Dreams into Reality</div>
-    <nav class="nav-buttons">
-      <a href="index.html" class="nav-btn">Home</a>
-      <a href="services.html" class="nav-btn">Services</a>
-      <a href="gallery.html" class="nav-btn">Gallery</a>
-      <a href="contact.html" class="nav-btn">Contact</a>
-      <a href="faq.html" class="nav-btn">FAQ</a>
-    </nav>
-  </header>
+  <!-- Header -->
+  <div class="section1">
+    <img src="willona.png" alt="Logo" class="logo">
+    <div class="slogan">Willona’s Decor & Events – Turning Dreams into Reality</div>
+    <nav class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+      <a href="faq.html" class="nav-btn">FAQ</a>
+    </nav>
+  </div>
 
-  <!-- FAQ Section -->
-  <main class="section2">
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
+  <!-- FAQ Section -->
+  <div class="section2">
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
+    <div class="bg-slide"></div>
 
-    <div class="section-content">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-container">
-        
-        <div class="faq-item">
-          <button class="faq-question">What services do you offer?</button>
-          <div class="faq-answer">
-            <p>We specialize in weddings, birthdays, corporate events, and unique theme setups tailored to your vision.</p>
-          </div>
-        </div>
+    <div class="section-content">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        
+        <div class="faq-item">
+          <button class="faq-question">What services do you offer?</button>
+          <div class="faq-answer">
+            <p>We specialize in weddings, birthdays, corporate events, and unique theme setups tailored to your vision.</p>
+          </div>
+        </div>
 
-        <div class="faq-item">
-          <button class="faq-question">Do you provide packages?</button>
-          <div class="faq-answer">
-            <p>Yes, we offer flexible packages that can be customized to suit your budget and event size.</p>
-          </div>
-        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do you provide packages?</button>
+          <div class="faq-answer">
+            <p>Yes, we offer flexible packages that can be customized to suit your budget and event size.</p>
+          </div>
+        </div>
 
-        <div class="faq-item">
-          <button class="faq-question">How far in advance should I book?</button>
-          <div class="faq-answer">
-            <p>We recommend booking 2–3 months in advance to secure your preferred date and theme.</p>
-          </div>
-        </div>
+        <div class="faq-item">
+          <button class="faq-question">How far in advance should I book?</button>
+          <div class="faq-answer">
+            <p>We recommend booking 2–3 months in advance to secure your preferred date and theme.</p>
+          </div>
+        </div>
 
-        <div class="faq-item">
-          <button class="faq-question">Can I request a custom theme?</button>
-          <div class="faq-answer">
-            <p>Absolutely! We love bringing new creative themes to life and will design something unique for you.</p>
-          </div>
-        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I request a custom theme?</button>
+          <div class="faq-answer">
+            <p>Absolutely! We love bringing new creative themes to life and will design something unique for you.</p>
+          </div>
+        </div>
 
-      </div>
-    </div>
-  </main>
+      </div>
+    </div>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Willona’s Decor & Events. All Rights Reserved.
-  </footer>
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Willona’s Decor & Events. All Rights Reserved.
+  </footer>
 
-  <script>
-    // Logic for FAQ Accordion
-    document.querySelectorAll(".faq-question").forEach(button => {
-      button.addEventListener("click", () => {
-        const faqItem = button.parentElement;
-        
-        // Close other items if one is opened
-        document.querySelectorAll(".faq-item").forEach(item => {
-          if (item !== faqItem) item.classList.remove("active");
-        });
+  <script>
+    // Logic for FAQ Accordion
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const faqItem = button.parentElement;
+        
+        // Close other items if one is opened
+        document.querySelectorAll(".faq-item").forEach(item => {
+          if (item !== faqItem) item.classList.remove("active");
+        });
 
-        faqItem.classList.toggle("active");
-      });
-    });
-  </script>
+        faqItem.classList.toggle("active");
+      });
+    });
+  </script>
 </body>
 </html>
+
+   
