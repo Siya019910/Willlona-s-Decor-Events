@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>FAQ – Willona’s Decor & Events</title>
   <style>
-    /* === Shared Styles (same as other pages) === */
+    /* === Global Resets === */
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -13,6 +17,7 @@
       font-family: Arial, sans-serif;
       background-color: #111;
       color: #fff;
+      overflow-x: hidden; /* Prevents horizontal sliding */
     }
 
     body {
@@ -20,53 +25,67 @@
       flex-direction: column;
     }
 
+    /* === Section 1: Header (Fixed for Mobile Line) === */
     .section1 {
       background-color: #FFCBA4;
       color: #996515;
       text-align: center;
-      padding: 10px 15px;
+      padding: 10px 5px;
     }
 
     .logo {
       width: 70px;
-      max-width: 100%;
+      height: auto;
     }
 
     .slogan {
-      font-size: 0.95rem;
-      margin: 6px auto;
+      font-size: 0.9rem;
+      margin: 5px auto 12px;
       max-width: 95%;
-      line-height: 1.3;
+      line-height: 1.2;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Force nav items into a straight line */
+    .nav-buttons {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 3px;
+      width: 100%;
+      padding: 0 4px;
     }
 
     .nav-btn {
-  padding: 4px 8px;              /* much smaller padding */
-  font-size: 0.7rem;             /* reduced font size */
-  min-width: 60px;               /* smaller width */
-  border-radius: 15px;           /* smaller rounded corners */
-  background-color: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  border: 1px solid rgba(255,215,0,0.6); /* thinner border */
-  box-shadow: 0 2px 4px rgba(255,215,0,0.3); /* smaller shadow */
-  transition: all 0.3s ease;
-  text-align: center;
-}
+      flex: 1;
+      padding: 6px 2px;
+      font-size: 0.65rem; /* Small enough to fit all on one line */
+      min-width: 0;
+      background-color: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid rgba(153, 101, 21, 0.3);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
 
-.nav-btn:hover {
-  background-color: rgba(255,215,0,0.2);
-  color: white;
-  box-shadow: 0 3px 6px rgba(255,215,0,0.6);
-}
+    .nav-btn:hover {
+      background-color: #996515;
+      color: white;
+    }
 
+    /* === Section 2: FAQ Content === */
     .section2 {
       flex: 1;
       position: relative;
-      overflow: hidden;
-      min-height: 100vh;
+      min-height: 80vh;
     }
 
     .bg-slide {
@@ -76,6 +95,7 @@
       background-position: center;
       opacity: 0;
       animation: bgFade 20s infinite;
+      z-index: -1;
     }
 
     .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
@@ -84,16 +104,16 @@
     .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
 
     @keyframes bgFade {
-      0%, 12.5% { opacity: 1; }
+      0%, 12.5% { opacity: 0.4; } /* Dimmed for readability */
       25%, 100% { opacity: 0; }
     }
 
     .section-content {
       position: relative;
       z-index: 1;
-      padding: 60px 15px;
+      padding: 40px 15px;
       text-align: center;
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
@@ -101,25 +121,17 @@
       font-size: 1.6rem;
       margin-bottom: 20px;
       color: goldenrod;
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: #996515;
-      color: #FFCBA4;
-      font-size: 0.85rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
     }
 
     /* === FAQ Styles === */
     .faq-container {
       text-align: left;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .faq-item {
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.7);
       margin-bottom: 10px;
       border-radius: 10px;
       overflow: hidden;
@@ -128,67 +140,63 @@
 
     .faq-question {
       width: 100%;
-      padding: 12px 14px;
-      background: rgba(255,215,0,0.1);
+      padding: 14px;
+      background: rgba(255,215,0,0.05);
       border: none;
       color: goldenrod;
       font-weight: bold;
       text-align: left;
       cursor: pointer;
-      transition: 0.3s;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    .faq-question:hover {
-      background: rgba(255,215,0,0.3);
+      font-size: 0.95rem;
     }
 
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease;
+      transition: max-height 0.3s ease-out;
       padding: 0 14px;
       color: #eee;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.05);
     }
 
     .faq-item.active .faq-answer {
-      max-height: 400px;
+      max-height: 200px;
       padding: 12px 14px;
     }
 
-    /* === Mobile Tweaks === */
-    @media (max-width: 768px) {
-      .logo { width: 60px; }
-      .slogan { font-size: 0.85rem; }
-      .nav-btn { font-size: 0.85rem; padding: 7px 12px; min-width: 80px; }
-      .section-content h2 { font-size: 1.4rem; }
-      .faq-question { font-size: 0.95rem; padding: 10px 12px; }
-      .faq-answer { font-size: 0.9rem; }
+    /* === Footer (Decreased Size) === */
+    footer {
+      text-align: center;
+      padding: 8px 10px;
+      background-color: #996515;
+      color: #FFCBA4;
+      font-size: 0.7rem; /* Smaller for mobile */
     }
 
-    @media (max-width: 480px) {
-      .section-content { padding: 40px 10px; }
-      .slogan { font-size: 0.8rem; }
-      .faq-question { font-size: 0.9rem; }
-      .faq-answer { font-size: 0.85rem; }
+    /* === Desktop Adjustments === */
+    @media (min-width: 768px) {
+      .nav-btn { font-size: 0.85rem; padding: 8px 15px; flex: none; width: 100px; }
+      .nav-buttons { gap: 10px; }
+      .logo { width: 100px; }
+      .slogan { font-size: 1.1rem; }
+      footer { font-size: 0.85rem; padding: 15px; }
     }
   </style>
 </head>
 <body>
+
   <!-- Header -->
   <div class="section1">
     <img src="willona.png" alt="Logo" class="logo">
-    <div class="slogan"><b><i>Willona’s Decor & Events – Turning Dreams into Reality</i></b></div>
-    <div class="nav-buttons">
+    <div class="slogan">Willona’s Decor & Events – Turning Dreams into Reality</div>
+    <nav class="nav-buttons">
       <a href="index.html" class="nav-btn">Home</a>
       <a href="services.html" class="nav-btn">Services</a>
       <a href="gallery.html" class="nav-btn">Gallery</a>
       <a href="contact.html" class="nav-btn">Contact</a>
       <a href="faq.html" class="nav-btn">FAQ</a>
-    </div>
+    </nav>
   </div>
 
   <!-- FAQ Section -->
@@ -201,6 +209,7 @@
     <div class="section-content">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-container">
+        
         <div class="faq-item">
           <button class="faq-question">What services do you offer?</button>
           <div class="faq-answer">
@@ -223,25 +232,12 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Do you only do decor or full event planning?</button>
-          <div class="faq-answer">
-            <p>We handle both – from complete event planning to decor-only, based on your needs.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
           <button class="faq-question">Can I request a custom theme?</button>
           <div class="faq-answer">
             <p>Absolutely! We love bringing new creative themes to life and will design something unique for you.</p>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">How do I request a quote?</button>
-          <div class="faq-answer">
-            <p>Visit our <a href="contact.html" style="color:goldenrod;">Contact Page</a> and share details of your event, and we’ll get back with a personalized quote.</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -251,12 +247,18 @@
     &copy; 2025 Willona’s Decor & Events. All Rights Reserved.
   </footer>
 
-  <!-- FAQ Accordion Script -->
   <script>
-    document.querySelectorAll(".faq-question").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const item = btn.parentElement;
-        item.classList.toggle("active");
+    // Logic for FAQ Accordion
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const faqItem = button.parentElement;
+        
+        // Close other items if one is opened
+        document.querySelectorAll(".faq-item").forEach(item => {
+          if (item !== faqItem) item.classList.remove("active");
+        });
+
+        faqItem.classList.toggle("active");
       });
     });
   </script>
