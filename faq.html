@@ -14,10 +14,10 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #111;
       color: #fff;
-      overflow-x: hidden; /* Prevents horizontal sliding */
+      overflow-x: hidden; /* Total fix for horizontal sliding */
     }
 
     body {
@@ -25,67 +25,70 @@
       flex-direction: column;
     }
 
-    /* === Section 1: Header (Fixed for Mobile Line) === */
+    /* === Section 1: Header (Optimized for Mobile) === */
     .section1 {
       background-color: #FFCBA4;
       color: #996515;
       text-align: center;
-      padding: 10px 5px;
+      padding: 15px 5px 10px; /* Balanced padding */
     }
 
     .logo {
-      width: 70px;
+      width: 90px; /* Medium Size */
       height: auto;
+      margin-bottom: 5px;
     }
 
     .slogan {
-      font-size: 0.9rem;
-      margin: 5px auto 12px;
-      max-width: 95%;
+      font-size: 0.85rem;
+      margin: 0 auto 12px;
+      max-width: 90%;
       line-height: 1.2;
       font-weight: bold;
       font-style: italic;
     }
 
-    /* Force nav items into a straight line */
+    /* Force nav items into a straight line without wrapping */
     .nav-buttons {
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: center;
-      gap: 3px;
+      flex-wrap: nowrap; /* Prevents jumping to second line */
+      justify-content: space-evenly; /* Even spacing */
+      align-items: center;
       width: 100%;
-      padding: 0 4px;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 2px;
     }
 
     .nav-btn {
       flex: 1;
-      padding: 6px 2px;
-      font-size: 0.65rem; /* Small enough to fit all on one line */
-      min-width: 0;
-      background-color: rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: black;
+      margin: 0 2px;
+      padding: 8px 0;
+      font-size: 0.68rem; /* Precision size for mobile fitting */
+      background-color: rgba(255,255,255,0.3);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      color: #000;
       text-decoration: none;
       font-weight: bold;
-      border: 1px solid rgba(153, 101, 21, 0.3);
-      border-radius: 10px;
-      transition: all 0.3s ease;
+      border: 1px solid rgba(153, 101, 21, 0.2);
+      border-radius: 6px;
+      transition: background 0.3s;
       text-align: center;
       white-space: nowrap;
     }
 
     .nav-btn:hover {
       background-color: #996515;
-      color: white;
+      color: #fff;
     }
 
     /* === Section 2: FAQ Content === */
     .section2 {
       flex: 1;
       position: relative;
-      min-height: 80vh;
+      min-height: 60vh;
     }
 
     .bg-slide {
@@ -104,90 +107,92 @@
     .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
 
     @keyframes bgFade {
-      0%, 12.5% { opacity: 0.4; } /* Dimmed for readability */
+      0%, 12.5% { opacity: 0.3; } 
       25%, 100% { opacity: 0; }
     }
 
     .section-content {
       position: relative;
       z-index: 1;
-      padding: 40px 15px;
+      padding: 30px 15px;
       text-align: center;
-      max-width: 800px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
     .section-content h2 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin-bottom: 20px;
-      color: goldenrod;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+      color: #FFD700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 
-    /* === FAQ Styles === */
+    /* === FAQ Accordion === */
     .faq-container {
       text-align: left;
-      margin-top: 10px;
     }
 
     .faq-item {
-      background: rgba(0,0,0,0.7);
-      margin-bottom: 10px;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
+      margin-bottom: 8px;
+      border-radius: 8px;
       overflow: hidden;
-      border: 1px solid goldenrod;
+      border: 1px solid rgba(218, 165, 32, 0.4);
     }
 
     .faq-question {
       width: 100%;
-      padding: 14px;
-      background: rgba(255,215,0,0.05);
+      padding: 15px;
+      background: none;
       border: none;
-      color: goldenrod;
+      color: #FFD700;
       font-weight: bold;
       text-align: left;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      display: block;
     }
 
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      padding: 0 14px;
-      color: #eee;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.05);
+      transition: max-height 0.3s ease;
+      padding: 0 15px;
+      color: #ddd;
+      font-size: 0.85rem;
+      line-height: 1.4;
     }
 
     .faq-item.active .faq-answer {
       max-height: 200px;
-      padding: 12px 14px;
+      padding: 5px 15px 15px;
     }
 
-    /* === Footer (Decreased Size) === */
+    /* === Reduced Footer === */
     footer {
       text-align: center;
-      padding: 8px 10px;
+      padding: 10px;
       background-color: #996515;
       color: #FFCBA4;
-      font-size: 0.7rem; /* Smaller for mobile */
+      font-size: 0.65rem; /* Very compact */
+      letter-spacing: 0.5px;
     }
 
-    /* === Desktop Adjustments === */
+    /* === Desktop Enhancements === */
     @media (min-width: 768px) {
-      .nav-btn { font-size: 0.85rem; padding: 8px 15px; flex: none; width: 100px; }
-      .nav-buttons { gap: 10px; }
-      .logo { width: 100px; }
+      .nav-btn { font-size: 0.9rem; padding: 10px 15px; margin: 0 5px; }
+      .nav-buttons { max-width: 700px; }
+      .logo { width: 110px; }
       .slogan { font-size: 1.1rem; }
-      footer { font-size: 0.85rem; padding: 15px; }
+      .section-content h2 { font-size: 2rem; }
+      footer { font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- Header -->
-  <div class="section1">
+  <header class="section1">
     <img src="willona.png" alt="Logo" class="logo">
     <div class="slogan">Willona’s Decor & Events – Turning Dreams into Reality</div>
     <nav class="nav-buttons">
@@ -197,10 +202,10 @@
       <a href="contact.html" class="nav-btn">Contact</a>
       <a href="faq.html" class="nav-btn">FAQ</a>
     </nav>
-  </div>
+  </header>
 
   <!-- FAQ Section -->
-  <div class="section2">
+  <main class="section2">
     <div class="bg-slide"></div>
     <div class="bg-slide"></div>
     <div class="bg-slide"></div>
@@ -240,7 +245,7 @@
 
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
   <footer>
@@ -264,4 +269,3 @@
   </script>
 </body>
 </html>
-
