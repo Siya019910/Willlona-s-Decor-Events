@@ -32,18 +32,16 @@
     .slogan {
       font-size: 10px; color: #7a4a00;
       font-style: italic; letter-spacing: 0.03em;
-      margin-bottom: 8px; line-height: 1.4;
+      margin-bottom: 10px; line-height: 1.4;
     }
 
-    /* ── NAV ── */
+    /* ── NAV (Wrapped for Mobile) ── */
     .nav-buttons {
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-      gap: 4px;
+      flex-wrap: wrap;
+      gap: 6px;
       width: 100%;
-      overflow: hidden;
     }
     .nav-btn {
       font-family: Arial, sans-serif;
@@ -52,63 +50,48 @@
       background: transparent;
       border: 1px solid #7a4a00;
       border-radius: 20px;
-      padding: 4px 8px;
+      padding: 5px 10px;
       text-decoration: none;
       white-space: nowrap;
-      letter-spacing: 0.03em;
-      flex-shrink: 0;
     }
-    .nav-btn:hover { background: rgba(122,74,0,0.1); }
 
-    /* ── HERO / CONTENT AREA ── */
+    /* ── HERO ── */
     .hero {
       flex: 1;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 28px 14px;
-      min-height: 340px;
-      overflow: hidden;
+      padding: 20px;
+      min-height: 300px;
     }
-    .bg-slide {
-      position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      animation: bgFade 20s infinite;
-    }
+    .bg-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: bgFade 20s infinite; }
     .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
     .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
     .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
     .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
-    @keyframes bgFade {
-      0%, 12.5% { opacity: 1; }
-      25%, 100% { opacity: 0; }
-    }
+    @keyframes bgFade { 0%, 12.5% { opacity: 1; } 25%, 100% { opacity: 0; } }
 
     /* ── DIM GLASS CARD ── */
     .section-content {
       position: relative; z-index: 2;
       text-align: center;
-      max-width: 400px; width: 100%;
-      background: rgba(0, 0, 0, 0.4); 
+      width: 100%; max-width: 400px;
+      background: rgba(0, 0, 0, 0.5); 
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 24px;
+      padding: 20px;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 15px; }
-    
-    /* ── UPDATED TABLE STYLES ── */
-    table { width: 100%; border-collapse: collapse; color: #fff; margin-bottom: 10px; font-size: 11px; }
-    th, td { padding: 8px; border: 1px solid #996515; text-align: center; }
-    th { background: #996515; color: #fff; }
+
+    /* ── TABLE STYLES ── */
+    table { width: 100%; border-collapse: collapse; color: #fff; margin-bottom: 10px; font-size: 10px; }
+    th, td { padding: 8px 4px; border: 1px solid #996515; text-align: center; }
+    th { background: #996515; color: #fff; font-size: 11px; }
 
     /* ── FOOTER ── */
-    footer { background: #7a4a00; padding: 8px 12px; text-align: center; }
-    footer p { font-family: Arial, sans-serif; font-size: 10px; color: #FFCBA4; }
+    footer { background: #7a4a00; padding: 10px; text-align: center; }
+    footer p { font-size: 9px; color: #FFCBA4; }
   </style>
 </head>
 <body>
@@ -127,16 +110,14 @@
   </header>
 
   <main class="hero">
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
+    <div class="bg-slide"></div><div class="bg-slide"></div>
+    <div class="bg-slide"></div><div class="bg-slide"></div>
 
     <div class="section-content">
       <h2>Our Services</h2>
       <table>
-        <tr><th>Event Type</th><th>Basic</th><th>Standard</th><th>Premium</th></tr>
-        <tr><td>Weddings</td><td>R5k-10k</td><td>R10k-15k</td><td>R50k-100k</td></tr>
+        <tr><th>Event</th><th>Basic</th><th>Standard</th><th>Prem.</th></tr>
+        <tr><td>Weddings</td><td>R5k-10k</td><td>R10k-15k</td><td>R50k+</td></tr>
         <tr><td>Lobola</td><td>R5k-10k</td><td>R10k-15k</td><td>R15k-20k</td></tr>
         <tr><td>Birthdays</td><td>R2k-5k</td><td>R5k-10k</td><td>R10k-20k</td></tr>
         <tr><td>Funerals</td><td>R5k-9k</td><td>R9k-13k</td><td>R13k-20k</td></tr>
