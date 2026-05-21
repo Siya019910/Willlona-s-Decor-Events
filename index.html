@@ -10,15 +10,15 @@
     html, body { height: 100%; margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #111; color: #fff; overflow-x: hidden; }
     body { display: flex; flex-direction: column; }
     
-    .section1 { background-color: #FFCBA4; color: #996515; text-align: center; padding: 10px; }
-    .logo { width: 120px; max-width: 100%; margin-bottom: 5px; }
-    .slogan { font-size: 0.9rem; margin: 5px auto; max-width: 95%; }
+    .section1 { background-color: #FFCBA4; color: #996515; text-align: center; padding: 10px 5px; }
+    .logo { width: 80px; max-width: 100%; margin-bottom: 2px; } /* Reduced size */
+    .slogan { font-size: 0.8rem; margin: 2px auto; max-width: 95%; }
     
-    .nav-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 10px 5px; }
-    .nav-btn { flex: 0 1 auto; padding: 3px 8px; font-size: 0.6rem; border-radius: 5px; background: rgba(255,255,255,0.2); color: #996515; text-decoration: none; font-weight: bold; border: 1px solid #996515; text-align: center; white-space: nowrap; }
-    .nav-btn:hover { background: #996515; color: #fff; }
+    /* Straight aligned navigation */
+    .nav-buttons { display: flex; justify-content: center; flex-wrap: nowrap; gap: 4px; padding: 5px 0; }
+    .nav-btn { padding: 4px 6px; font-size: 0.65rem; border-radius: 4px; background: rgba(153, 101, 21, 0.1); color: #996515; text-decoration: none; font-weight: bold; border: 1px solid #996515; white-space: nowrap; }
 
-    .section2 { flex: 1; position: relative; min-height: 60vh; display: flex; align-items: center; justify-content: center; }
+    .section2 { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; padding: 10px; }
     .bg-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: bgFade 20s infinite; }
     .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
     .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
@@ -26,15 +26,20 @@
     .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
     @keyframes bgFade { 0%, 12.5% { opacity: 1; } 25%, 100% { opacity: 0; } }
 
-    .section-content { position: relative; z-index: 1; padding: 15px; text-align: center; max-width: 500px; background: rgba(0,0,0,0.6); border-radius: 10px; margin: 10px; }
-    h2 { font-size: 1.2rem; color: goldenrod; margin-top: 0; }
-    p { font-size: 0.9rem; }
+    /* Shadow Box effect applied here */
+    .section-content { 
+      position: relative; z-index: 1; padding: 20px; text-align: center; max-width: 90%; 
+      background: rgba(0,0,0,0.75); border-radius: 15px; 
+      box-shadow: 0 4px 15px rgba(255, 203, 164, 0.3), 0 0 10px rgba(0,0,0,0.5);
+      border: 1px solid rgba(218, 165, 32, 0.3);
+    }
+    h2 { font-size: 1.1rem; color: goldenrod; margin: 0 0 10px 0; }
+    p { font-size: 0.85rem; margin-bottom: 15px; }
     
-    .cta-buttons { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
-    .cta-btn { padding: 8px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-align: center; border: 1px solid goldenrod; color: goldenrod; }
-    .cta-btn:hover { background: goldenrod; color: #000; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 10px; }
+    .cta-btn { padding: 8px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; font-weight: bold; border: 1px solid goldenrod; color: goldenrod; }
     
-    footer { text-align: center; padding: 10px; background-color: #996515; color: #FFCBA4; font-size: 0.7rem; }
+    footer { text-align: center; padding: 8px; background-color: #996515; color: #FFCBA4; font-size: 0.6rem; }
   </style>
 </head>
 <body>
@@ -64,7 +69,7 @@
   </div>
 
   <footer>
-    <p>© 2025 Willona’s™ - We don’t just decorate spaces we design moments that take your breath away.</p>
+    <p>© 2025 Willona’s™ - We design moments that take your breath away.</p>
   </footer>
 </body>
 </html>
