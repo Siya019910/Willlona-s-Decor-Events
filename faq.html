@@ -1,487 +1,117 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FAQ - Willona’s Decor & Events</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>FAQ | Willona's Decor & Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: Georgia, 'Times New Roman', serif; background: #1a0a00; color: #fff; overflow-x: hidden; }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
 
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Header Styling - Matching Index */
-    .section1 {
-      background-color: #FFCBA4;
-      color: #996515;
+    /* ── HEADER ── */
+    .site-header {
+      background: #FFCBA4;
+      padding: 10px 12px 8px;
       text-align: center;
-      padding: 10px 15px;
+      border-bottom: 1px solid #e8c98a;
     }
-
     .logo {
-      width: 80px;
-      max-width: 100%;
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #c9963a;
+      display: block;
+      margin: 0 auto 6px;
     }
+    .brand-name { font-size: 13px; font-weight: 700; color: #7a4a00; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .slogan { font-size: 10px; color: #7a4a00; font-style: italic; letter-spacing: 0.03em; margin-bottom: 10px; line-height: 1.4; }
 
-    .slogan {
-      font-size: 1rem;
-      margin: 8px auto;
-      max-width: 90%;
-    }
-
+    /* ── NAV (Wrapped for Mobile) ── */
+    .nav-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; width: 100%; }
     .nav-btn {
-      padding: 4px 8px;
-      font-size: 0.7rem;
-      min-width: 60px;
-      border-radius: 15px;
-      background-color: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid rgba(255,215,0,0.6);
-      box-shadow: 0 2px 4px rgba(255,215,0,0.3);
-      transition: all 0.3s ease;
-      text-align: center;
-      display: inline-block;
+      font-family: Arial, sans-serif; font-size: 10px; font-weight: 700;
+      color: #7a4a00; background: transparent; border: 1px solid #7a4a00;
+      border-radius: 20px; padding: 5px 10px; text-decoration: none; white-space: nowrap;
     }
 
-    .nav-btn:hover {
-      background-color: rgba(255,215,0,0.2);
-      color: white;
-      box-shadow: 0 3px 6px rgba(255,215,0,0.6);
+    /* ── HERO / CONTENT AREA ── */
+    .hero {
+      flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
+      padding: 20px; min-height: 300px;
     }
-
-    /* Background Animation - Matching Index */
-    .section2 {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-      min-height: 100vh;
-    }
-
-    .bg-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      animation: bgFade 20s infinite;
-    }
-
+    .bg-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: bgFade 20s infinite; }
     .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
     .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
     .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
     .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
+    @keyframes bgFade { 0%, 12.5% { opacity: 1; } 25%, 100% { opacity: 0; } }
 
-    @keyframes bgFade {
-      0%, 12.5% { opacity: 1; }
-      25%, 100% { opacity: 0; }
-    }
-
-    /* FAQ Content Styling */
+    /* ── FAQ GLASS CARD ── */
     .section-content {
-      position: relative;
-      z-index: 1;
-      padding: 60px 20px;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
+      position: relative; z-index: 2;
+      width: 100%; max-width: 400px;
+      background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px);
+      padding: 20px; border-radius: 20px; text-align: left;
     }
+    h2 { font-size: 18px; text-align: center; margin-bottom: 15px; }
+    
+    .faq-item { margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+    .faq-question { font-size: 13px; font-weight: bold; color: #FFCBA4; cursor: pointer; display: flex; justify-content: space-between; }
+    .faq-answer { font-size: 12px; margin-top: 8px; color: #ddd; display: none; }
+    .faq-item.active .faq-answer { display: block; }
 
-    .section-content h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: goldenrod;
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    }
-
-    .faq-container {
-      text-align: left;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-      backdrop-filter: blur(5px);
-    }
-
-    .faq-item {
-      margin-bottom: 15px;
-      border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-      padding-bottom: 10px;
-    }
-
-    .faq-question {
-      font-size: 1.1rem;
-      color: goldenrod;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-answer {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #ddd;
-      margin-top: 10px;
-      display: none; /* Controlled by JS or can be set to block */
-    }
-
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* Footer - Matching Index */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #996515;
-      color: #FFCBA4;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav-btn { font-size: 0.9rem; padding: 8px 14px; min-width: 100px; }
-      .section-content { padding: 40px 15px; }
-      .section-content h2 { font-size: 1.5rem; }
-    }
+    /* ── FOOTER ── */
+    footer { background: #7a4a00; padding: 10px; text-align: center; }
+    footer p { font-size: 9px; color: #FFCBA4; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="section1">
-    <img src="willona.png" alt="Willona Logo" class="logo">
-    <h1 class="slogan"><b><i>We don’t just decorate spaces—we design moments that take your breath away.</i></b></h1>
-    <div class="nav-buttons">
+  <header class="site-header">
+    <img src="willona.png" alt="Willona's Logo" class="logo">
+    <div class="brand-name">WILLONA'S™</div>
+    <p class="slogan"><em>We design moments that take your breath away.</em></p>
+    <nav class="nav-buttons">
       <a href="index.html" class="nav-btn">Home</a>
       <a href="services.html" class="nav-btn">Services</a>
       <a href="gallery.html" class="nav-btn">Gallery</a>
       <a href="contact.html" class="nav-btn">Contact</a>
       <a href="faq.html" class="nav-btn">FAQ</a>
-    </div>
-  </div>
+    </nav>
+  </header>
 
-  <!-- Content Section -->
-  <div class="section2">
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
+  <main class="hero">
+    <div class="bg-slide"></div><div class="bg-slide"></div>
+    <div class="bg-slide"></div><div class="bg-slide"></div>
 
     <div class="section-content">
-      <h2>Frequently Asked Questions</h2>
-      
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            How far in advance should I book?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            We recommend booking at least 3 to 6 months in advance for large events like weddings, and 4 weeks for smaller celebrations to ensure availability.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Do you offer custom decor packages?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Yes! Every event is unique. We tailor our packages to suit your specific theme, budget, and guest count.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Do you handle setup and breakdown?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Absolutely. Our team manages the full installation before the event and the cleanup afterward, so you can focus on enjoying your moment.
-          </div>
-        </div>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">How far in advance to book? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">For weddings, 3–6 months. For smaller events, at least 4 weeks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Custom packages? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Yes, we tailor every package to your specific theme and budget.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Setup and cleanup? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Our team handles full installation and breakdown so you can enjoy your event stress-free.</div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Willona’s™ — <i>We don’t just decorate spaces—we design moments that take your breath away.</i></p>
-  </footer>
+  <footer><p>© 2025 Willona's™ — We design moments that take your breath away.</p></footer>
 
   <script>
     function toggleFaq(element) {
       const item = element.parentElement;
       item.classList.toggle('active');
-      
-      // Toggle icon
       const icon = element.querySelector('i');
-      if(item.classList.contains('active')) {
-        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-      } else {
-        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-      }
+      icon.className = item.classList.contains('active') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
     }
   </script>
-
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FAQ - Willona’s Decor & Events</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Header Styling - Matching Index */
-    .section1 {
-      background-color: #FFCBA4;
-      color: #996515;
-      text-align: center;
-      padding: 10px 15px;
-    }
-
-    .logo {
-      width: 80px;
-      max-width: 100%;
-    }
-
-    .slogan {
-      font-size: 1rem;
-      margin: 8px auto;
-      max-width: 90%;
-    }
-
-    .nav-btn {
-      padding: 4px 8px;
-      font-size: 0.7rem;
-      min-width: 60px;
-      border-radius: 15px;
-      background-color: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid rgba(255,215,0,0.6);
-      box-shadow: 0 2px 4px rgba(255,215,0,0.3);
-      transition: all 0.3s ease;
-      text-align: center;
-      display: inline-block;
-    }
-
-    .nav-btn:hover {
-      background-color: rgba(255,215,0,0.2);
-      color: white;
-      box-shadow: 0 3px 6px rgba(255,215,0,0.6);
-    }
-
-    /* Background Animation - Matching Index */
-    .section2 {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-      min-height: 100vh;
-    }
-
-    .bg-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      animation: bgFade 20s infinite;
-    }
-
-    .bg-slide:nth-child(1) { background-image: url('imgbh1.jpeg'); animation-delay: 0s; }
-    .bg-slide:nth-child(2) { background-image: url('imgbh2.jpeg'); animation-delay: 5s; }
-    .bg-slide:nth-child(3) { background-image: url('imgbh3.jpeg'); animation-delay: 10s; }
-    .bg-slide:nth-child(4) { background-image: url('imgbh4.jpeg'); animation-delay: 15s; }
-
-    @keyframes bgFade {
-      0%, 12.5% { opacity: 1; }
-      25%, 100% { opacity: 0; }
-    }
-
-    /* FAQ Content Styling */
-    .section-content {
-      position: relative;
-      z-index: 1;
-      padding: 60px 20px;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .section-content h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: goldenrod;
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    }
-
-    .faq-container {
-      text-align: left;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-      backdrop-filter: blur(5px);
-    }
-
-    .faq-item {
-      margin-bottom: 15px;
-      border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-      padding-bottom: 10px;
-    }
-
-    .faq-question {
-      font-size: 1.1rem;
-      color: goldenrod;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-answer {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #ddd;
-      margin-top: 10px;
-      display: none; /* Controlled by JS or can be set to block */
-    }
-
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* Footer - Matching Index */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #996515;
-      color: #FFCBA4;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav-btn { font-size: 0.9rem; padding: 8px 14px; min-width: 100px; }
-      .section-content { padding: 40px 15px; }
-      .section-content h2 { font-size: 1.5rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Header -->
-  <div class="section1">
-    <img src="willona.png" alt="Willona Logo" class="logo">
-    <h1 class="slogan"><b><i>We don’t just decorate spaces—we design moments that take your breath away.</i></b></h1>
-    <div class="nav-buttons">
-      <a href="index.html" class="nav-btn">Home</a>
-      <a href="services.html" class="nav-btn">Services</a>
-      <a href="gallery.html" class="nav-btn">Gallery</a>
-      <a href="contact.html" class="nav-btn">Contact</a>
-      <a href="faq.html" class="nav-btn">FAQ</a>
-    </div>
-  </div>
-
-  <!-- Content Section -->
-  <div class="section2">
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-    <div class="bg-slide"></div>
-
-    <div class="section-content">
-      <h2>Frequently Asked Questions</h2>
-      
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            How far in advance should I book?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            We recommend booking at least 3 to 6 months in advance for large events like weddings, and 4 weeks for smaller celebrations to ensure availability.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Do you offer custom decor packages?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Yes! Every event is unique. We tailor our packages to suit your specific theme, budget, and guest count.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Do you handle setup and breakdown?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            Absolutely. Our team manages the full installation before the event and the cleanup afterward, so you can focus on enjoying your moment.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Willona’s™ — <i>We don’t just decorate spaces—we design moments that take your breath away.</i></p>
-  </footer>
-
-  <script>
-    function toggleFaq(element) {
-      const item = element.parentElement;
-      item.classList.toggle('active');
-      
-      // Toggle icon
-      const icon = element.querySelector('i');
-      if(item.classList.contains('active')) {
-        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-      } else {
-        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-      }
-    }
-  </script>
-
-</body>
-</html>
->>>>>>> 2cf5dd4389dd934a28496233ed593d26ed428856
