@@ -1,78 +1,88 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Gallery – Willona’s Decor & Events</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<style>
-body { margin:0; font-family:Arial,sans-serif; background:#111; color:#fff; text-align:center; }
-.section1 { position:sticky; top:0; z-index:999; background-color:#ffcba4; color:#996515; padding:10px 0; }
-.logo { width:120px; max-width:80%; }
-.slogan { margin:5px 0; font-size:1.1rem; font-weight:bold; }
-.nav-buttons { margin-top:5px; display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Gallery | Willona's Decor & Events</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: Georgia, 'Times New Roman', serif; background: #1a0a00; color: #fff; overflow-x: hidden; }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
 
-.nav-btn { 
-  display:inline-block; 
-  padding:4px 8px; 
-  background-color:rgba(255,255,255,0.1); 
-  backdrop-filter:blur(10px); 
-  -webkit-backdrop-filter:blur(10px); 
-  color:black; 
-  text-decoration:none; 
-  border-radius:15px; 
-  font-weight:bold; 
-  border:1px solid rgba(255,215,0,0.6); 
-  box-shadow:0 2px 4px rgba(255,215,0,0.3); 
-  transition:all 0.3s ease; 
-  min-width:55px; 
-  font-size:0.7rem; 
-  text-align:center; 
-}
-.nav-btn:hover { 
-  background-color:rgba(255,215,0,0.2); 
-  color:white; 
-  box-shadow:0 3px 6px rgba(255,215,0,0.6); 
-}
+    /* ── HEADER ── */
+    .site-header {
+      background: #FFCBA4;
+      padding: 10px 12px 8px;
+      text-align: center;
+      border-bottom: 1px solid #e8c98a;
+    }
+    .logo {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #c9963a;
+      display: block;
+      margin: 0 auto 6px;
+    }
+    .brand-name { font-size: 13px; font-weight: 700; color: #7a4a00; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .slogan { font-size: 10px; color: #7a4a00; font-style: italic; letter-spacing: 0.03em; margin-bottom: 10px; line-height: 1.4; }
 
-h1 { padding:15px; font-size:1.8rem; background:goldenrod; color:#111; margin:0 0 10px 0; }
-h2 { color:goldenrod; margin-top:20px; }
-.month-desc { font-size:1rem; color:#ccc; margin:5px 0 15px; }
-.gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:10px; padding:10px; }
-.gallery .media-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
-.gallery img, .gallery video { width:100%; height:180px; object-fit:cover; border-radius:10px; cursor:pointer; transition:transform 0.3s ease; }
-.gallery img:hover, .gallery video:hover { transform:scale(1.05); }
-.download-btn { display:inline-block; padding:5px 10px; background-color:rgba(255,215,0,0.6); color:black; text-decoration:none; border-radius:15px; font-weight:bold; font-size:0.9rem; transition:all 0.3s ease; }
-.download-btn:hover { background-color:gold; color:#111; }
+    /* ── NAV (Wrapped for Mobile) ── */
+    .nav-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; width: 100%; }
+    .nav-btn {
+      font-family: Arial, sans-serif; font-size: 10px; font-weight: 700;
+      color: #7a4a00; background: transparent; border: 1px solid #7a4a00;
+      border-radius: 20px; padding: 5px 10px; text-decoration: none; white-space: nowrap;
+    }
+    .nav-btn.active { background: #7a4a00; color: #FFCBA4; }
 
-.lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; z-index:1000; padding:20px; }
-.lightbox-content { max-width:95%; max-height:85%; position:relative; }
-.lightbox-content img, .lightbox-content video { width:100%; height:auto; max-height:85vh; border-radius:12px; }
-.close-btn { position:absolute; top:15px; right:20px; font-size:30px; color:#fff; cursor:pointer; font-weight:bold; }
-footer { text-align:center; padding:15px 10px; background-color:#996515; color:#ffcba4; font-size:0.9rem; }
+    /* ── GALLERY CONTENT ── */
+    main { padding: 20px; width: 100%; max-width: 800px; margin: 0 auto; flex: 1; }
+    h1 { font-size: 20px; color: #FFCBA4; margin-bottom: 20px; text-align: center; }
+    h2 { font-size: 16px; color: #c9963a; margin: 20px 0 10px; }
+    .month-desc { font-size: 11px; color: #aaa; margin-bottom: 15px; }
 
-@media (max-width:768px){ 
-  .slogan{ font-size:1rem; } 
-  .nav-btn{ font-size:0.65rem; padding:3px 6px; min-width:50px; } 
-  .gallery img, .gallery video{ height:140px; } 
-}
-</style>
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+    .media-item { display: flex; flex-direction: column; gap: 5px; }
+    .media-item img, .media-item video { 
+      width: 100%; height: 120px; object-fit: cover; 
+      border-radius: 8px; cursor: pointer; transition: 0.3s; 
+    }
+    .download-btn { 
+      font-size: 9px; text-align: center; color: #FFCBA4; 
+      text-decoration: none; background: #7a4a00; padding: 3px; border-radius: 5px; 
+    }
+
+    /* ── FILTER ── */
+    .filter-box { margin-bottom: 20px; text-align: center; }
+    select { background: #333; color: #fff; padding: 5px; border-radius: 5px; border: 1px solid #c9963a; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox img, .lightbox video { max-width: 100%; max-height: 80vh; border-radius: 10px; }
+    .close-btn { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 24px; }
+
+    footer { background: #7a4a00; padding: 10px; text-align: center; margin-top: 20px; }
+    footer p { font-size: 9px; color: #FFCBA4; }
+  </style>
 </head>
 <body>
 
-<div class="section1">
-  <img src="willona.png" alt="Willona Logo" class="logo">
-  <div class="slogan">We don’t just decorate spaces—we design moments that take your breath away.</div>
-  <div class="nav-buttons">
-    <a href="index.html" class="nav-btn">Home</a>
-    <a href="services.html" class="nav-btn">Services</a>
-    <a href="gallery.html" class="nav-btn" style="background-color:goldenrod;">Gallery</a>
-    <a href="contact.html" class="nav-btn">Contact</a>
-    <a href="faq.html" class="nav-btn">FAQ</a>
-  </div>
-</div>
+<header class="site-header">
+    <img src="willona.png" alt="Willona's Logo" class="logo">
+    <div class="brand-name">WILLONA'S™</div>
+    <p class="slogan"><em>We design moments that take your breath away.</em></p>
+    <nav class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="services.html" class="nav-btn">Services</a>
+      <a href="gallery.html" class="nav-btn active">Gallery</a>
+      <a href="contact.html" class="nav-btn">Contact</a>
+      <a href="faq.html" class="nav-btn">FAQ</a>
+    </nav>
+  </header>
 
+<main>
 <h1>Our Gallery</h1>
 
 <div style="margin:20px;">
@@ -283,13 +293,13 @@ fetch(clUrl)
     if(data.resources && data.resources.length > 0) {
       const clContainer = document.getElementById('cloudinary-gallery');
       document.getElementById('recent-section').style.display = 'block';
-      
+
       data.resources.forEach(item => {
         const isVideo = ["mp4", "mov", "webm"].includes(item.format.toLowerCase());
         const mediaSrc = isVideo 
           ? `https://res.cloudinary.com/${cloudName}/video/upload/v${item.version}/${item.public_id}.${item.format}`
           : `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_800/v${item.version}/${item.public_id}.${item.format}`;
-        
+
         const div = document.createElement('div');
         div.className = "media-item";
         div.innerHTML = isVideo 
@@ -610,7 +620,7 @@ footer { text-align:center; padding:15px 10px; background-color:#996515; color:#
     <div class="media-item"><img src="imgy41.jpeg" alt="Birthdays & Unveiling"><a href="imgy41.jpeg" download class="download-btn">Download</a></div>
     <div class="media-item"><img src="imgy42.jpeg" alt="Birthdays & Unveiling"><a href="imgy42.jpeg" download class="download-btn">Download</a></div>
   </div>
-</div>
+</main>
 
 <div class="lightbox" id="lightbox">
   <span class="close-btn" onclick="closeLightbox()">&times;</span>
@@ -633,13 +643,13 @@ fetch(clUrl)
     if(data.resources && data.resources.length > 0) {
       const clContainer = document.getElementById('cloudinary-gallery');
       document.getElementById('recent-section').style.display = 'block';
-      
+
       data.resources.forEach(item => {
         const isVideo = ["mp4", "mov", "webm"].includes(item.format.toLowerCase());
         const mediaSrc = isVideo 
           ? `https://res.cloudinary.com/${cloudName}/video/upload/v${item.version}/${item.public_id}.${item.format}`
           : `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_800/v${item.version}/${item.public_id}.${item.format}`;
-        
+
         const div = document.createElement('div');
         div.className = "media-item";
         div.innerHTML = isVideo 
@@ -698,4 +708,3 @@ document.addEventListener('keydown', (e) => {
 
 </body>
 </html>
->>>>>>> 2cf5dd4389dd934a28496233ed593d26ed428856
