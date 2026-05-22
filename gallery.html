@@ -2,138 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Gallery | Willona's Decor & Events</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; font-family: Georgia, 'Times New Roman', serif; background: #111; color: #fff; overflow-x: hidden; }
-    body { display: flex; flex-direction: column; min-height: 100vh; }
-
-    /* ── HEADER ── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: #FFCBA4;
-      padding: 10px 12px 8px;
-      text-align: center;
-      border-bottom: 1px solid #e8c98a;
-    }
-    .logo {
-      width: 120px;
-      max-width: 80%;
-      display: block;
-      margin: 0 auto 6px;
-    }
-    .brand-name { font-size: 13px; font-weight: 700; color: #7a4a00; letter-spacing: 0.06em; margin-bottom: 2px; }
-    .slogan { font-size: 11px; color: #7a4a00; font-weight: bold; letter-spacing: 0.03em; margin-bottom: 10px; line-height: 1.4; }
-
-    /* ── NAV ── */
-    .nav-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; width: 100%; }
-    .nav-btn {
-      display: inline-block;
-      font-family: Arial, sans-serif; font-size: 0.7rem; font-weight: 700;
-      color: black; background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,215,0,0.6);
-      border-radius: 15px; padding: 4px 8px; text-decoration: none;
-      white-space: nowrap; min-width: 55px; text-align: center;
-      box-shadow: 0 2px 4px rgba(255,215,0,0.3);
-      transition: all 0.3s ease;
-    }
-    .nav-btn:hover { background: rgba(255,215,0,0.2); color: white; box-shadow: 0 3px 6px rgba(255,215,0,0.6); }
-    .nav-btn.active { background: goldenrod; color: #111; }
-
-    /* ── PAGE TITLE ── */
-    h1 { padding: 15px; font-size: 1.8rem; background: goldenrod; color: #111; margin: 0 0 10px 0; text-align: center; }
-    h2 { color: goldenrod; margin: 20px 10px 5px; }
-    .month-desc { font-size: 1rem; color: #ccc; margin: 5px 10px 15px; }
+    html, body { font-family: Georgia, 'Times New Roman', serif; background: #111; color: #fff; overflow-x: hidden; }
+    
+    /* ── HEADER & NAV ── */
+    .site-header { position: sticky; top: 0; z-index: 999; background: #FFCBA4; padding: 15px; text-align: center; border-bottom: 2px solid #e8c98a; }
+    .brand-name { font-size: 1.2rem; font-weight: 700; color: #7a4a00; }
+    .slogan { font-size: 0.8rem; color: #7a4a00; margin-bottom: 10px; }
+    .nav-buttons { display: flex; justify-content: center; gap: 10px; }
+    .nav-btn { font-size: 0.8rem; color: black; text-decoration: none; padding: 5px 12px; border: 1px solid #7a4a00; border-radius: 15px; }
+    .nav-btn.active { background: #7a4a00; color: #fff; }
 
     /* ── GALLERY GRID ── */
+    h1 { padding: 20px; font-size: 1.5rem; background: goldenrod; color: #111; text-align: center; }
+    h2 { color: goldenrod; padding: 25px 10px 5px; }
+    .month-desc { padding: 0 10px 10px; color: #ccc; font-size: 0.9rem; }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      padding: 10px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding: 8px;
     }
-    .media-item { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .media-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
     .media-item img, .media-item video {
-      width: 100%; height: 180px; object-fit: cover;
-      border-radius: 10px; cursor: pointer;
-      transition: transform 0.3s ease;
+      width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+      border-radius: 8px; cursor: pointer; transition: transform 0.3s ease;
     }
-    .media-item img:hover, .media-item video:hover { transform: scale(1.05); }
-    .download-btn {
-      display: inline-block; padding: 5px 10px;
-      background: rgba(255,215,0,0.6); color: black;
-      text-decoration: none; border-radius: 15px;
-      font-weight: bold; font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-    .download-btn:hover { background: gold; color: #111; }
+    .media-item img:hover { transform: scale(1.03); }
+    .download-btn { font-size: 0.65rem; color: gold; text-decoration: none; text-transform: uppercase; }
 
-    @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
-
-    /* ── FILTER ── */
-    .filter-box { margin: 20px; text-align: center; }
-    .filter-box label { font-weight: bold; color: goldenrod; }
-    .filter-box select { padding: 8px; border-radius: 5px; margin-left: 8px; }
+    /* ── RESPONSIVE GRID ── */
+    @media (max-width: 900px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 500px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
 
     /* ── LIGHTBOX ── */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-    .lightbox-content { max-width: 95%; max-height: 85%; position: relative; }
-    .lightbox-content img, .lightbox-content video { width: 100%; height: auto; max-height: 85vh; border-radius: 12px; }
-    .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 30px; color: #fff; font-weight: bold; }
-
+    @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; padding: 15px; }
+    .lightbox-content { animation: zoomIn 0.3s ease-out; max-width: 95%; max-height: 90vh; }
+    .lightbox-content img, .lightbox-content video { max-width: 100%; max-height: 80vh; border-radius: 8px; }
+    .close-btn { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 40px; color: #fff; z-index: 10000; }
+    
     /* ── FOOTER ── */
-    footer { background: #996515; padding: 15px 10px; text-align: center; margin-top: 20px; }
-    footer p { font-size: 0.9rem; color: #FFCBA4; }
-
-    @media (max-width: 768px) {
-      .slogan { font-size: 1rem; }
-      .nav-btn { font-size: 0.65rem; padding: 3px 6px; min-width: 50px; }
-      .media-item img, .media-item video { height: 120px; }
-    }
+    footer { padding: 40px 20px; text-align: center; color: #fff; font-size: 0.85rem; background-color: #7a4a00; margin-top: 20px; }
   </style>
 </head>
 <body>
 
 <header class="site-header">
-  <img src="willona.png" alt="Willona's Logo" class="logo">
   <div class="brand-name">WILLONA'S™</div>
-  <p class="slogan">We don't just decorate spaces—we design moments that take your breath away.</p>
+  <p class="slogan">We don't just decorate spaces—we design moments.</p>
   <nav class="nav-buttons">
-    <a href="index.html" class="nav-btn">Home</a>
-    <a href="services.html" class="nav-btn">Services</a>
-    <a href="gallery.html" class="nav-btn active">Gallery</a>
-    <a href="contact.html" class="nav-btn">Contact</a>
-    <a href="faq.html" class="nav-btn">FAQ</a>
+    <a href="#" class="nav-btn">Home</a>
+    <a href="#" class="nav-btn active">Gallery</a>
   </nav>
 </header>
 
 <h1>Our Gallery</h1>
-
-<div class="filter-box">
-  <label for="monthFilter">Filter by Month:</label>
-  <select id="monthFilter" onchange="filterGallery()">
-    <option value="all">All Content</option>
-    <option value="recent">Recent Highlights (New)</option>
-    <option value="june">June 2025</option>
-    <option value="july">July 2025</option>
-    <option value="august">August 2025</option>
-    <option value="february">February 2026</option>
-    <option value="april">April 2026</option>
-  </select>
-</div>
-
-<!-- CLOUDINARY DYNAMIC SECTION -->
-<div class="month-group recent" id="recent-section" style="display: none;">
-  <h2>Recent Highlights</h2>
-  <p class="month-desc">Freshly updated moments from our latest projects</p>
-  <div class="gallery" id="cloudinary-gallery"></div>
-</div>
 
 <!-- June 2025 -->
 <div class="month-group june">
@@ -308,80 +235,24 @@
 </div>
 
 <footer>
-  <p>&copy; 2025 Willona's™ — We don't just decorate spaces—we design moments that take your breath away.</p>
+  <p>© 2025 Willona's™ — We design moments that take your breath away.</p>
 </footer>
 
 <script>
-const cloudName = "dqiodxuuf";
-const tag = "client_gallery";
-const clUrl = `https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`;
-
-fetch(clUrl)
-  .then(res => res.json())
-  .then(data => {
-    if (data.resources && data.resources.length > 0) {
-      const clContainer = document.getElementById('cloudinary-gallery');
-      document.getElementById('recent-section').style.display = 'block';
-
-      data.resources.forEach(item => {
-        const isVideo = ["mp4", "mov", "webm"].includes(item.format.toLowerCase());
-        const mediaSrc = isVideo
-          ? `https://res.cloudinary.com/${cloudName}/video/upload/v${item.version}/${item.public_id}.${item.format}`
-          : `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_800/v${item.version}/${item.public_id}.${item.format}`;
-
-        const div = document.createElement('div');
-        div.className = "media-item";
-        div.innerHTML = isVideo
-          ? `<video src="${mediaSrc}" controls muted></video><a href="${mediaSrc}" download class="download-btn">Download</a>`
-          : `<img src="${mediaSrc}" alt="Recent event"><a href="${mediaSrc}" download class="download-btn">Download</a>`;
-        clContainer.appendChild(div);
-      });
-      refreshGalleryEvents();
-    }
-  }).catch(err => console.log("Cloudinary dynamic list empty or disabled."));
-
-let galleryItems = [];
-let currentIndex = -1;
-const lightbox = document.getElementById('lightbox');
-const lightboxContent = document.getElementById('lightbox-content');
-
-function refreshGalleryEvents() {
-  galleryItems = document.querySelectorAll('.gallery img, .gallery video');
-  galleryItems.forEach((item, index) => {
+  const lightbox = document.getElementById('lightbox');
+  const content = document.getElementById('lightbox-content');
+  
+  document.querySelectorAll('.media-item img, .media-item video').forEach(item => {
     item.onclick = () => {
-      currentIndex = index;
       lightbox.style.display = 'flex';
-      if (item.tagName === 'IMG') {
-        lightboxContent.innerHTML = `<img src="${item.src}">`;
-      } else {
-        lightboxContent.innerHTML = `<video src="${item.src}" controls autoplay></video>`;
-      }
+      content.innerHTML = item.tagName === 'IMG' 
+        ? `<img src="${item.src}">` 
+        : `<video src="${item.src}" controls autoplay></video>`;
     };
   });
-}
 
-function closeLightbox() {
-  lightbox.style.display = 'none';
-  lightboxContent.innerHTML = '';
-}
-
-function filterGallery() {
-  const filter = document.getElementById('monthFilter').value;
-  const groups = document.querySelectorAll('.month-group');
-  groups.forEach(g => {
-    if (filter === 'all') g.style.display = 'block';
-    else g.classList.contains(filter) ? g.style.display = 'block' : g.style.display = 'none';
-  });
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  refreshGalleryEvents();
-  filterGallery();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeLightbox();
-});
+  function closeLightbox() { lightbox.style.display = 'none'; }
+  lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
 </script>
 
 </body>
