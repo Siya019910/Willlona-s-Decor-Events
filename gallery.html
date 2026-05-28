@@ -22,8 +22,65 @@
     .month-group { margin-bottom: 26px; }
     h2 { color: #fff; font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #996515; padding-bottom: 4px; }
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
     .media-item { display: flex; flex-direction: column; gap: 4px; align-items: center; }
-    .media-item img, .media-item video { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; }
+    .media-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; }
+
+    /* Video wrapper */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #000;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Play/Pause button */
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px;
+      height: 38px;
+      background: rgba(153, 101, 21, 0.88);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: background 0.15s;
+    }
+    .play-btn i { color: #fff; font-size: 13px; pointer-events: none; margin-left: 2px; }
+    .play-btn.playing i { margin-left: 0; }
+    .play-btn:active { background: rgba(122, 74, 0, 0.95); }
+
+    /* Progress bar */
+    .prog-wrap {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: rgba(255,255,255,0.2);
+      z-index: 3;
+      cursor: pointer;
+    }
+    .prog-fill {
+      height: 100%;
+      background: #996515;
+      width: 0%;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
     .download-btn { font-family: Arial, sans-serif; font-size: 8px; font-weight: 700; border-radius: 12px; padding: 3px 8px; text-decoration: none; color: #fff; background: #996515; display: inline-block; text-transform: uppercase; }
 
     footer { background: #7a4a00; padding: 7px 10px; text-align: center; }
@@ -31,6 +88,7 @@
   </style>
 </head>
 <body>
+
   <header class="site-header">
     <img src="willona.png" alt="Willona's Logo" class="logo">
     <div class="brand-name">WILLONA'S™</div>
@@ -64,12 +122,54 @@
         <div class="media-item"><img src="imgj11.jpg"><a href="imgj11.jpg" download class="download-btn">Save</a></div>
         <div class="media-item"><img src="imgj12.jpg"><a href="imgj12.jpg" download class="download-btn">Save</a></div>
         <div class="media-item"><img src="imgj13.jpg"><a href="imgj13.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidj1.mp4" controls></video><a href="vidj1.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidj2.mp4" controls></video><a href="vidj2.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidj3.mp4" controls></video><a href="vidj3.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidj4.mp4" controls></video><a href="vidj4.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidj5.mp4" controls></video><a href="vidj5.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidj6.mp4" controls></video><a href="vidj6.mp4" download class="download-btn">Save</a></div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidj1.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidj1.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidj2.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidj2.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidj3.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidj3.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidj4.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidj4.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidj5.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidj5.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidj6.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidj6.mp4" download class="download-btn">Save</a>
+        </div>
       </div>
     </div>
 
@@ -89,10 +189,38 @@
         <div class="media-item"><img src="imgjl10.jpg"><a href="imgjl10.jpg" download class="download-btn">Save</a></div>
         <div class="media-item"><img src="imgjl11.jpg"><a href="imgjl11.jpg" download class="download-btn">Save</a></div>
         <div class="media-item"><img src="imgjl12.jpg"><a href="imgjl12.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidjl1.mp4" controls></video><a href="vidjl1.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidjl2.mp4" controls></video><a href="vidjl2.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidjl3.mp4" controls></video><a href="vidjl3.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidjl4.mp4" controls></video><a href="vidjl4.mp4" download class="download-btn">Save</a></div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidjl1.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidjl1.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidjl2.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidjl2.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidjl3.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidjl3.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidjl4.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidjl4.mp4" download class="download-btn">Save</a>
+        </div>
       </div>
     </div>
 
@@ -131,16 +259,86 @@
         <div class="media-item"><img src="imgau22.jpg"><a href="imgau22.jpg" download class="download-btn">Save</a></div>
         <div class="media-item"><img src="imgau26.jpg"><a href="imgau26.jpg" download class="download-btn">Save</a></div>
         <div class="media-item"><img src="imgau30.jpg"><a href="imgau30.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau1.mp4" controls></video><a href="vidau1.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau2.mp4" controls></video><a href="vidau2.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau3.mp4" controls></video><a href="vidau3.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau4.mp4" controls></video><a href="vidau4.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau5.mp4" controls></video><a href="vidau5.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau6.mp4" controls></video><a href="vidau6.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau7.mp4" controls></video><a href="vidau7.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau8.mp4" controls></video><a href="vidau8.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau9.mp4" controls></video><a href="vidau9.mp4" download class="download-btn">Save</a></div>
-        <div class="media-item"><video src="vidau10.mp4" controls></video><a href="vidau10.mp4" download class="download-btn">Save</a></div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau1.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau1.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau2.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau2.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau3.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau3.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau4.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau4.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau5.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau5.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau6.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau6.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau7.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau7.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau8.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau8.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau9.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau9.mp4" download class="download-btn">Save</a>
+        </div>
+        <div class="media-item">
+          <div class="video-wrap">
+            <video src="vidau10.mp4" preload="metadata" playsinline></video>
+            <div class="play-btn"><i class="fas fa-play"></i></div>
+            <div class="prog-wrap"><div class="prog-fill"></div></div>
+          </div>
+          <a href="vidau10.mp4" download class="download-btn">Save</a>
+        </div>
       </div>
     </div>
 
@@ -208,8 +406,70 @@
         <div class="media-item"><img src="imgy42.jpeg"><a href="imgy42.jpeg" download class="download-btn">Save</a></div>
       </div>
     </div>
+
   </main>
 
   <footer><p>© 2025 Willona's™ — We design moments that take your breath away.</p></footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      document.querySelectorAll('.video-wrap').forEach(function (wrap) {
+        var video = wrap.querySelector('video');
+        var btn   = wrap.querySelector('.play-btn');
+        var fill  = wrap.querySelector('.prog-fill');
+        var bar   = wrap.querySelector('.prog-wrap');
+
+        // Play / Pause toggle
+        btn.addEventListener('click', function () {
+          // Pause all other videos first
+          document.querySelectorAll('.video-wrap video').forEach(function (v) {
+            if (v !== video && !v.paused) {
+              v.pause();
+              var ob = v.closest('.video-wrap').querySelector('.play-btn');
+              ob.querySelector('i').className = 'fas fa-play';
+              ob.classList.remove('playing');
+            }
+          });
+
+          if (video.paused) {
+            video.play();
+            btn.querySelector('i').className = 'fas fa-pause';
+            btn.classList.add('playing');
+          } else {
+            video.pause();
+            btn.querySelector('i').className = 'fas fa-play';
+            btn.classList.remove('playing');
+          }
+        });
+
+        // Progress update
+        video.addEventListener('timeupdate', function () {
+          if (video.duration) {
+            fill.style.width = (video.currentTime / video.duration * 100) + '%';
+          }
+        });
+
+        // Seek on tap
+        bar.addEventListener('click', function (e) {
+          if (video.duration) {
+            var rect = bar.getBoundingClientRect();
+            var ratio = (e.clientX - rect.left) / rect.width;
+            video.currentTime = ratio * video.duration;
+          }
+        });
+
+        // Reset on end
+        video.addEventListener('ended', function () {
+          btn.querySelector('i').className = 'fas fa-play';
+          btn.classList.remove('playing');
+          fill.style.width = '0%';
+          video.currentTime = 0;
+        });
+      });
+
+    });
+  </script>
+
 </body>
 </html>
