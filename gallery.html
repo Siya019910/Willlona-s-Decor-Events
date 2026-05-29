@@ -10,6 +10,7 @@
     html, body { width: 100%; font-family: Georgia, 'Times New Roman', serif; background: #1a0a00; color: #fff; overflow-x: hidden; }
     body { display: flex; flex-direction: column; min-height: 100vh; }
 
+    /* ── HEADER ── */
     .site-header { background: #FFCBA4; padding: 8px 8px 6px; text-align: center; border-bottom: 1px solid #e8c98a; }
     .logo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #c9963a; display: block; margin: 0 auto 4px; }
     .brand-name { font-size: 11px; font-weight: 700; color: #7a4a00; letter-spacing: 0.06em; margin-bottom: 1px; }
@@ -17,16 +18,26 @@
     .nav-buttons { display: flex; justify-content: center; align-items: center; gap: 4px; width: 100%; flex-wrap: nowrap; padding: 0 4px; }
     .nav-btn { font-family: Arial, sans-serif; font-weight: 700; color: #7a4a00; background: transparent; border: 1px solid #7a4a00; border-radius: 20px; text-decoration: none; white-space: nowrap; font-size: clamp(7px, 2.2vw, 10px); padding: 4px clamp(5px, 1.8vw, 9px); flex-shrink: 0; }
 
+    /* ── MAIN ── */
     main { flex: 1; padding: 10px; }
     h1 { text-align: center; color: #FFCBA4; padding: 16px 0 10px; font-size: 20px; }
     .month-group { margin-bottom: 26px; }
     h2 { color: #fff; font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #996515; padding-bottom: 4px; }
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-
     .media-item { display: flex; flex-direction: column; gap: 4px; align-items: center; }
-    .media-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; }
 
-    /* Video wrapper */
+    /* ── IMAGE with zoom cursor ── */
+    .media-item img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: zoom-in;
+      transition: transform 0.15s ease;
+    }
+    .media-item img:active { transform: scale(0.96); }
+
+    /* ── VIDEO WRAPPER ── */
     .video-wrap {
       position: relative;
       width: 100%;
@@ -42,27 +53,25 @@
       display: block;
     }
 
-    /* Play/Pause button */
+    /* Small play button — bottom-left corner */
     .play-btn {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 38px;
-      height: 38px;
-      background: rgba(153, 101, 21, 0.88);
-      border: 2px solid #fff;
+      bottom: 22px;
+      left: 8px;
+      width: 26px;
+      height: 26px;
+      background: rgba(153, 101, 21, 0.90);
+      border: 1.5px solid #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 3;
-      transition: background 0.15s;
+      z-index: 4;
+      transition: opacity 0.25s ease;
     }
-    .play-btn i { color: #fff; font-size: 13px; pointer-events: none; margin-left: 2px; }
-    .play-btn.playing i { margin-left: 0; }
-    .play-btn:active { background: rgba(122, 74, 0, 0.95); }
+    .play-btn i { color: #fff; font-size: 9px; pointer-events: none; margin-left: 1px; }
+    .play-btn.hidden { opacity: 0; pointer-events: none; }
 
     /* Progress bar */
     .prog-wrap {
@@ -71,7 +80,6 @@
       height: 4px;
       background: rgba(255,255,255,0.2);
       z-index: 3;
-      cursor: pointer;
     }
     .prog-fill {
       height: 100%;
@@ -81,8 +89,43 @@
       pointer-events: none;
     }
 
+    /* ── DOWNLOAD BUTTON ── */
     .download-btn { font-family: Arial, sans-serif; font-size: 8px; font-weight: 700; border-radius: 12px; padding: 3px 8px; text-decoration: none; color: #fff; background: #996515; display: inline-block; text-transform: uppercase; }
 
+    /* ── IMAGE LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+      animation: zoomIn 0.22s ease;
+    }
+    @keyframes zoomIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    #lightbox-close {
+      position: absolute;
+      top: 14px; right: 16px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── FOOTER ── */
     footer { background: #7a4a00; padding: 7px 10px; text-align: center; }
     footer p { font-family: Arial, sans-serif; font-size: 9px; color: #FFCBA4; }
   </style>
@@ -102,6 +145,12 @@
     </nav>
   </header>
 
+  <!-- Image Lightbox Overlay -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
   <main>
     <h1>Gallery</h1>
 
@@ -109,19 +158,19 @@
     <div class="month-group">
       <h2>June 2025</h2>
       <div class="gallery">
-        <div class="media-item"><img src="imgj1.jpg"><a href="imgj1.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj2.jpg"><a href="imgj2.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj3.jpg"><a href="imgj3.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj4.jpg"><a href="imgj4.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj5.jpg"><a href="imgj5.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj6.jpg"><a href="imgj6.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj7.jpg"><a href="imgj7.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj8.jpg"><a href="imgj8.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj9.jpg"><a href="imgj9.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj10.jpg"><a href="imgj10.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj11.jpg"><a href="imgj11.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj12.jpg"><a href="imgj12.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgj13.jpg"><a href="imgj13.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj1.jpg" class="zoomable"><a href="imgj1.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj2.jpg" class="zoomable"><a href="imgj2.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj3.jpg" class="zoomable"><a href="imgj3.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj4.jpg" class="zoomable"><a href="imgj4.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj5.jpg" class="zoomable"><a href="imgj5.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj6.jpg" class="zoomable"><a href="imgj6.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj7.jpg" class="zoomable"><a href="imgj7.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj8.jpg" class="zoomable"><a href="imgj8.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj9.jpg" class="zoomable"><a href="imgj9.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj10.jpg" class="zoomable"><a href="imgj10.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj11.jpg" class="zoomable"><a href="imgj11.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj12.jpg" class="zoomable"><a href="imgj12.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgj13.jpg" class="zoomable"><a href="imgj13.jpg" download class="download-btn">Save</a></div>
         <div class="media-item">
           <div class="video-wrap">
             <video src="vidj1.mp4" preload="metadata" playsinline></video>
@@ -177,18 +226,18 @@
     <div class="month-group">
       <h2>July 2025</h2>
       <div class="gallery">
-        <div class="media-item"><img src="imgjl1.jpg"><a href="imgjl1.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl2.jpg"><a href="imgjl2.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl3.jpg"><a href="imgjl3.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl4.jpg"><a href="imgjl4.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl5.jpg"><a href="imgjl5.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl6.jpg"><a href="imgjl6.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl7.jpg"><a href="imgjl7.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl8.jpg"><a href="imgjl8.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl9.jpg"><a href="imgjl9.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl10.jpg"><a href="imgjl10.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl11.jpg"><a href="imgjl11.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgjl12.jpg"><a href="imgjl12.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl1.jpg" class="zoomable"><a href="imgjl1.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl2.jpg" class="zoomable"><a href="imgjl2.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl3.jpg" class="zoomable"><a href="imgjl3.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl4.jpg" class="zoomable"><a href="imgjl4.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl5.jpg" class="zoomable"><a href="imgjl5.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl6.jpg" class="zoomable"><a href="imgjl6.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl7.jpg" class="zoomable"><a href="imgjl7.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl8.jpg" class="zoomable"><a href="imgjl8.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl9.jpg" class="zoomable"><a href="imgjl9.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl10.jpg" class="zoomable"><a href="imgjl10.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl11.jpg" class="zoomable"><a href="imgjl11.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgjl12.jpg" class="zoomable"><a href="imgjl12.jpg" download class="download-btn">Save</a></div>
         <div class="media-item">
           <div class="video-wrap">
             <video src="vidjl1.mp4" preload="metadata" playsinline></video>
@@ -228,37 +277,37 @@
     <div class="month-group">
       <h2>August 2025</h2>
       <div class="gallery">
-        <div class="media-item"><img src="imgau1.jpg"><a href="imgau1.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau2.jpg"><a href="imgau2.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau3.jpg"><a href="imgau3.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau4.jpg"><a href="imgau4.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau5.jpg"><a href="imgau5.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau6.jpg"><a href="imgau6.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau7.jpg"><a href="imgau7.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau8.jpg"><a href="imgau8.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau9.jpg"><a href="imgau9.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau10.jpg"><a href="imgau10.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau11.jpg"><a href="imgau11.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau12.jpg"><a href="imgau12.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau13.jpg"><a href="imgau13.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau15.jpg"><a href="imgau15.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau16.jpg"><a href="imgau16.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau17.jpg"><a href="imgau17.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau18.jpg"><a href="imgau18.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau19.jpg"><a href="imgau19.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau21.jpg"><a href="imgau21.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau23.jpg"><a href="imgau23.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau24.jpg"><a href="imgau24.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau25.jpg"><a href="imgau25.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau27.jpg"><a href="imgau27.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau28.jpg"><a href="imgau28.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau29.jpg"><a href="imgau29.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau31.jpg"><a href="imgau31.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau32.jpg"><a href="imgau32.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau20.jpg"><a href="imgau20.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau22.jpg"><a href="imgau22.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau26.jpg"><a href="imgau26.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgau30.jpg"><a href="imgau30.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau1.jpg" class="zoomable"><a href="imgau1.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau2.jpg" class="zoomable"><a href="imgau2.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau3.jpg" class="zoomable"><a href="imgau3.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau4.jpg" class="zoomable"><a href="imgau4.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau5.jpg" class="zoomable"><a href="imgau5.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau6.jpg" class="zoomable"><a href="imgau6.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau7.jpg" class="zoomable"><a href="imgau7.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau8.jpg" class="zoomable"><a href="imgau8.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau9.jpg" class="zoomable"><a href="imgau9.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau10.jpg" class="zoomable"><a href="imgau10.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau11.jpg" class="zoomable"><a href="imgau11.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau12.jpg" class="zoomable"><a href="imgau12.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau13.jpg" class="zoomable"><a href="imgau13.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau15.jpg" class="zoomable"><a href="imgau15.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau16.jpg" class="zoomable"><a href="imgau16.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau17.jpg" class="zoomable"><a href="imgau17.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau18.jpg" class="zoomable"><a href="imgau18.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau19.jpg" class="zoomable"><a href="imgau19.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau21.jpg" class="zoomable"><a href="imgau21.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau23.jpg" class="zoomable"><a href="imgau23.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau24.jpg" class="zoomable"><a href="imgau24.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau25.jpg" class="zoomable"><a href="imgau25.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau27.jpg" class="zoomable"><a href="imgau27.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau28.jpg" class="zoomable"><a href="imgau28.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau29.jpg" class="zoomable"><a href="imgau29.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau31.jpg" class="zoomable"><a href="imgau31.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau32.jpg" class="zoomable"><a href="imgau32.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau20.jpg" class="zoomable"><a href="imgau20.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau22.jpg" class="zoomable"><a href="imgau22.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau26.jpg" class="zoomable"><a href="imgau26.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgau30.jpg" class="zoomable"><a href="imgau30.jpg" download class="download-btn">Save</a></div>
         <div class="media-item">
           <div class="video-wrap">
             <video src="vidau1.mp4" preload="metadata" playsinline></video>
@@ -346,15 +395,15 @@
     <div class="month-group">
       <h2>February 2026</h2>
       <div class="gallery">
-        <div class="media-item"><img src="imgf1.jpg"><a href="imgf1.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf2.jpg"><a href="imgf2.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf3.jpg"><a href="imgf3.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf4.jpg"><a href="imgf4.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf5.jpg"><a href="imgf5.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf6.jpg"><a href="imgf6.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf7.jpg"><a href="imgf7.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf8.jpg"><a href="imgf8.jpg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgf9.jpg"><a href="imgf9.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf1.jpg" class="zoomable"><a href="imgf1.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf2.jpg" class="zoomable"><a href="imgf2.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf3.jpg" class="zoomable"><a href="imgf3.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf4.jpg" class="zoomable"><a href="imgf4.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf5.jpg" class="zoomable"><a href="imgf5.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf6.jpg" class="zoomable"><a href="imgf6.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf7.jpg" class="zoomable"><a href="imgf7.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf8.jpg" class="zoomable"><a href="imgf8.jpg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgf9.jpg" class="zoomable"><a href="imgf9.jpg" download class="download-btn">Save</a></div>
       </div>
     </div>
 
@@ -362,48 +411,48 @@
     <div class="month-group">
       <h2>April 2026</h2>
       <div class="gallery">
-        <div class="media-item"><img src="imgy1.jpeg"><a href="imgy1.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy2.jpeg"><a href="imgy2.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy3.jpeg"><a href="imgy3.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy4.jpeg"><a href="imgy4.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy5.jpeg"><a href="imgy5.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy6.jpeg"><a href="imgy6.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy7.jpeg"><a href="imgy7.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy8.jpeg"><a href="imgy8.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy9.jpeg"><a href="imgy9.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy10.jpeg"><a href="imgy10.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy11.jpeg"><a href="imgy11.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy12.jpeg"><a href="imgy12.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy13.jpeg"><a href="imgy13.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy14.jpeg"><a href="imgy14.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy15.jpeg"><a href="imgy15.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy16.jpeg"><a href="imgy16.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy17.jpeg"><a href="imgy17.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy18.jpeg"><a href="imgy18.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy19.jpeg"><a href="imgy19.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy20.jpeg"><a href="imgy20.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy21.jpeg"><a href="imgy21.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy22.jpeg"><a href="imgy22.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy23.jpeg"><a href="imgy23.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy24.jpeg"><a href="imgy24.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy25.jpeg"><a href="imgy25.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy26.jpeg"><a href="imgy26.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy27.jpeg"><a href="imgy27.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy28.jpeg"><a href="imgy28.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy29.jpeg"><a href="imgy29.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy30.jpeg"><a href="imgy30.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy31.jpeg"><a href="imgy31.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy32.jpeg"><a href="imgy32.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy33.jpeg"><a href="imgy33.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy34.jpeg"><a href="imgy34.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy35.jpeg"><a href="imgy35.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy36.jpeg"><a href="imgy36.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy37.jpeg"><a href="imgy37.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy38.jpeg"><a href="imgy38.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy39.jpeg"><a href="imgy39.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy40.jpeg"><a href="imgy40.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy41.jpeg"><a href="imgy41.jpeg" download class="download-btn">Save</a></div>
-        <div class="media-item"><img src="imgy42.jpeg"><a href="imgy42.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy1.jpeg" class="zoomable"><a href="imgy1.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy2.jpeg" class="zoomable"><a href="imgy2.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy3.jpeg" class="zoomable"><a href="imgy3.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy4.jpeg" class="zoomable"><a href="imgy4.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy5.jpeg" class="zoomable"><a href="imgy5.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy6.jpeg" class="zoomable"><a href="imgy6.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy7.jpeg" class="zoomable"><a href="imgy7.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy8.jpeg" class="zoomable"><a href="imgy8.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy9.jpeg" class="zoomable"><a href="imgy9.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy10.jpeg" class="zoomable"><a href="imgy10.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy11.jpeg" class="zoomable"><a href="imgy11.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy12.jpeg" class="zoomable"><a href="imgy12.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy13.jpeg" class="zoomable"><a href="imgy13.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy14.jpeg" class="zoomable"><a href="imgy14.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy15.jpeg" class="zoomable"><a href="imgy15.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy16.jpeg" class="zoomable"><a href="imgy16.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy17.jpeg" class="zoomable"><a href="imgy17.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy18.jpeg" class="zoomable"><a href="imgy18.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy19.jpeg" class="zoomable"><a href="imgy19.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy20.jpeg" class="zoomable"><a href="imgy20.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy21.jpeg" class="zoomable"><a href="imgy21.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy22.jpeg" class="zoomable"><a href="imgy22.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy23.jpeg" class="zoomable"><a href="imgy23.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy24.jpeg" class="zoomable"><a href="imgy24.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy25.jpeg" class="zoomable"><a href="imgy25.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy26.jpeg" class="zoomable"><a href="imgy26.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy27.jpeg" class="zoomable"><a href="imgy27.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy28.jpeg" class="zoomable"><a href="imgy28.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy29.jpeg" class="zoomable"><a href="imgy29.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy30.jpeg" class="zoomable"><a href="imgy30.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy31.jpeg" class="zoomable"><a href="imgy31.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy32.jpeg" class="zoomable"><a href="imgy32.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy33.jpeg" class="zoomable"><a href="imgy33.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy34.jpeg" class="zoomable"><a href="imgy34.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy35.jpeg" class="zoomable"><a href="imgy35.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy36.jpeg" class="zoomable"><a href="imgy36.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy37.jpeg" class="zoomable"><a href="imgy37.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy38.jpeg" class="zoomable"><a href="imgy38.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy39.jpeg" class="zoomable"><a href="imgy39.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy40.jpeg" class="zoomable"><a href="imgy40.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy41.jpeg" class="zoomable"><a href="imgy41.jpeg" download class="download-btn">Save</a></div>
+        <div class="media-item"><img src="imgy42.jpeg" class="zoomable"><a href="imgy42.jpeg" download class="download-btn">Save</a></div>
       </div>
     </div>
 
@@ -412,63 +461,113 @@
   <footer><p>© 2025 Willona's™ — We design moments that take your breath away.</p></footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
 
-      document.querySelectorAll('.video-wrap').forEach(function (wrap) {
-        var video = wrap.querySelector('video');
-        var btn   = wrap.querySelector('.play-btn');
-        var fill  = wrap.querySelector('.prog-fill');
-        var bar   = wrap.querySelector('.prog-wrap');
+    /* ── VIDEO LOGIC ── */
+    document.querySelectorAll('.video-wrap').forEach(function (wrap) {
+      var video = wrap.querySelector('video');
+      var btn   = wrap.querySelector('.play-btn');
+      var fill  = wrap.querySelector('.prog-fill');
+      var bar   = wrap.querySelector('.prog-wrap');
 
-        // Play / Pause toggle
-        btn.addEventListener('click', function () {
-          // Pause all other videos first
-          document.querySelectorAll('.video-wrap video').forEach(function (v) {
-            if (v !== video && !v.paused) {
-              v.pause();
-              var ob = v.closest('.video-wrap').querySelector('.play-btn');
-              ob.querySelector('i').className = 'fas fa-play';
-              ob.classList.remove('playing');
-            }
-          });
-
-          if (video.paused) {
-            video.play();
-            btn.querySelector('i').className = 'fas fa-pause';
-            btn.classList.add('playing');
-          } else {
-            video.pause();
-            btn.querySelector('i').className = 'fas fa-play';
-            btn.classList.remove('playing');
+      btn.addEventListener('click', function () {
+        // Pause all others
+        document.querySelectorAll('.video-wrap video').forEach(function (v) {
+          if (v !== video && !v.paused) {
+            v.pause();
+            var ob = v.closest('.video-wrap').querySelector('.play-btn');
+            ob.classList.remove('hidden');
+            ob.querySelector('i').className = 'fas fa-play';
           }
         });
 
-        // Progress update
-        video.addEventListener('timeupdate', function () {
-          if (video.duration) {
-            fill.style.width = (video.currentTime / video.duration * 100) + '%';
-          }
-        });
+        if (video.paused) {
+          // Request fullscreen on the video element
+          var fsTarget = wrap;
+          if (fsTarget.requestFullscreen) fsTarget.requestFullscreen();
+          else if (fsTarget.webkitRequestFullscreen) fsTarget.webkitRequestFullscreen();
+          else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); // iOS fallback
 
-        // Seek on tap
-        bar.addEventListener('click', function (e) {
-          if (video.duration) {
-            var rect = bar.getBoundingClientRect();
-            var ratio = (e.clientX - rect.left) / rect.width;
-            video.currentTime = ratio * video.duration;
-          }
-        });
-
-        // Reset on end
-        video.addEventListener('ended', function () {
+          video.play();
+          btn.classList.add('hidden');  // hide button while playing
+        } else {
+          video.pause();
+          btn.classList.remove('hidden');
           btn.querySelector('i').className = 'fas fa-play';
-          btn.classList.remove('playing');
-          fill.style.width = '0%';
-          video.currentTime = 0;
-        });
+        }
       });
 
+      // Show button again if user manually exits fullscreen
+      document.addEventListener('fullscreenchange', function () {
+        if (!document.fullscreenElement && !video.paused) {
+          video.pause();
+          btn.classList.remove('hidden');
+          btn.querySelector('i').className = 'fas fa-play';
+        }
+      });
+
+      // Progress bar
+      video.addEventListener('timeupdate', function () {
+        if (video.duration) {
+          fill.style.width = (video.currentTime / video.duration * 100) + '%';
+        }
+      });
+
+      // Seek
+      bar.addEventListener('click', function (e) {
+        if (video.duration) {
+          var rect = bar.getBoundingClientRect();
+          video.currentTime = ((e.clientX - rect.left) / rect.width) * video.duration;
+        }
+      });
+
+      // On end: exit fullscreen + reset + return to gallery view
+      video.addEventListener('ended', function () {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else if (document.webkitFullscreenElement) document.webkitExitFullscreen();
+
+        btn.classList.remove('hidden');
+        btn.querySelector('i').className = 'fas fa-play';
+        fill.style.width = '0%';
+        video.currentTime = 0;
+
+        // Smooth scroll back to gallery top
+        document.querySelector('h1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
+
+    /* ── IMAGE LIGHTBOX (zoom effect) ── */
+    var lb     = document.getElementById('lightbox');
+    var lbImg  = document.getElementById('lightbox-img');
+    var lbClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('img.zoomable').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lbImg.src = img.src;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb) closeLightbox();
+    });
+
+    // Close lightbox on swipe down (mobile)
+    var touchStartY = 0;
+    lb.addEventListener('touchstart', function (e) { touchStartY = e.touches[0].clientY; });
+    lb.addEventListener('touchend', function (e) {
+      if (e.changedTouches[0].clientY - touchStartY > 60) closeLightbox();
+    });
+
+  });
   </script>
 
 </body>
